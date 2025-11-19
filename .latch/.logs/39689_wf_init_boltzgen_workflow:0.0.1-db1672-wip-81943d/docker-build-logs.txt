@@ -1,0 +1,44 @@
+Step 1/23 : FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu20.04
+ ---> a1ffe80dc4e1
+Step 2/23 : COPY --from=812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base-cuda:cb01-main /bin/flytectl /bin/flytectl
+ ---> Using cache
+ ---> 1efd5fd57e3f
+Step 3/23 : WORKDIR /root
+ ---> Using cache
+ ---> be988766149a
+Step 4/23 : ENV VENV /opt/venv
+ ---> Using cache
+ ---> 0bc8763049c1
+Step 5/23 : ENV LANG C.UTF-8
+ ---> Using cache
+ ---> b0fe75b2d533
+Step 6/23 : ENV LC_ALL C.UTF-8
+ ---> Using cache
+ ---> 2acc0400eac3
+Step 7/23 : ENV PYTHONPATH /root
+ ---> Using cache
+ ---> 3c0ee4bb8a3e
+Step 8/23 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 5c4762b10eab
+Step 9/23 : RUN apt-get update && apt-get install -y libsm6 libxext6 libxrender-dev build-essential procps rsync openssh-server
+ ---> Using cache
+ ---> 99eee343dcf8
+Step 10/23 : RUN apt-get install -y software-properties-common &&    add-apt-repository -y ppa:deadsnakes/ppa &&    apt-get install -y python3.9 python3-pip python3.9-distutils curl
+ ---> Using cache
+ ---> 760a009e16b3
+Step 11/23 : RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh &&     bash miniconda.sh -b -p /root/miniconda &&     rm miniconda.sh
+ ---> Using cache
+ ---> c8ed28eabab1
+Step 12/23 : RUN /root/miniconda/bin/conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main &&     /root/miniconda/bin/conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
+ ---> Using cache
+ ---> 1fcdf970fe5d
+Step 13/23 : RUN /root/miniconda/bin/conda create --name mlfold python=3.11 -y &&     /root/miniconda/bin/conda run --name mlfold conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia -y
+ ---> Using cache
+ ---> 6ac4cacf74ca
+Step 14/23 : RUN /root/miniconda/bin/conda run --name mlfold pip install --requirement /root/requirements.txt
+ ---> Running in f7a7009ee598
+[91mERROR: Could not open requirements file: [Errno 2] No such file or directory: '/root/requirements.txt'
+
+ERROR conda.cli.main_run:execute(127): `conda run pip install --requirement /root/requirements.txt` failed. (See above for error)
+[0mThe command '/bin/sh -c /root/miniconda/bin/conda run --name mlfold pip install --requirement /root/requirements.txt' returned a non-zero code: 1

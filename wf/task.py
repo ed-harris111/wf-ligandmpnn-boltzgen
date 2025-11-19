@@ -35,12 +35,12 @@ def boltzgen_task(
     boltzgen_dir = Path("/tmp/docker-build/work/boltgen")
 
     command = [
-        "boltzgen run",
-        input_yaml,
+        "boltzgen", "run",
+        input_yaml.local_path,
         "--output",
         str(local_output_dir), 
-        "--steps design",
-        "--num_designs 2",
+        "--steps", "design",
+        "--num_designs", "2",
         ]
 
   

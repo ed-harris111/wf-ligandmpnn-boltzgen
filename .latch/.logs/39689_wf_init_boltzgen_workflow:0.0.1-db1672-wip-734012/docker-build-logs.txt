@@ -1,0 +1,33 @@
+Step 1/14 : from 812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base:cb01-main
+ ---> 507607c2b5ea
+Step 2/14 : workdir /tmp/docker-build/work/
+ ---> Using cache
+ ---> 3b5eb2da1ce3
+Step 3/14 : shell [     "/usr/bin/env", "bash",     "-o", "errexit",     "-o", "pipefail",     "-o", "nounset",     "-o", "verbose",     "-o", "errtrace",     "-O", "inherit_errexit",     "-O", "shift_verbose",     "-c" ]
+ ---> Using cache
+ ---> 2af6bafaff25
+Step 4/14 : env TZ='Etc/UTC'
+ ---> Using cache
+ ---> 5b7579be9ce0
+Step 5/14 : env LANG='en_US.UTF-8'
+ ---> Using cache
+ ---> 5740eabe5ff3
+Step 6/14 : arg DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 6aedbe938026
+Step 7/14 : run pip install latch==2.67.18
+ ---> Using cache
+ ---> edd16ea7e57e
+Step 8/14 : run mkdir /opt/latch
+ ---> Using cache
+ ---> 592d4338d14b
+Step 9/14 : copy requirements.txt /opt/latch/requirements.txt
+ ---> c90b9c41d59c
+Step 10/14 : run pip install --requirement /opt/latch/requirements.txt
+ ---> Running in 5bf58fbd3687
+[91mpip install --requirement /opt/latch/requirements.txt
+[0m[91mERROR: Invalid requirement: '"numpy==2.0.2",' (from line 1 of /opt/latch/requirements.txt)
+[0m[91m
+[notice] A new release of pip is available: 24.0 -> 25.3
+[notice] To update, run: pip install --upgrade pip
+[0mThe command '/usr/bin/env bash -o errexit -o pipefail -o nounset -o verbose -o errtrace -O inherit_errexit -O shift_verbose -c pip install --requirement /opt/latch/requirements.txt' returned a non-zero code: 1

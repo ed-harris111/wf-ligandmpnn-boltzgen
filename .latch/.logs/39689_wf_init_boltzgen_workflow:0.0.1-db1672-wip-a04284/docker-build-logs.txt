@@ -1,0 +1,42 @@
+Step 1/14 : from 812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base:cb01-main
+ ---> 507607c2b5ea
+Step 2/14 : workdir /tmp/docker-build/work/
+ ---> Using cache
+ ---> 3b5eb2da1ce3
+Step 3/14 : shell [     "/usr/bin/env", "bash",     "-o", "errexit",     "-o", "pipefail",     "-o", "nounset",     "-o", "verbose",     "-o", "errtrace",     "-O", "inherit_errexit",     "-O", "shift_verbose",     "-c" ]
+ ---> Using cache
+ ---> 2af6bafaff25
+Step 4/14 : env TZ='Etc/UTC'
+ ---> Using cache
+ ---> 5b7579be9ce0
+Step 5/14 : env LANG='en_US.UTF-8'
+ ---> Using cache
+ ---> 5740eabe5ff3
+Step 6/14 : arg DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 6aedbe938026
+Step 7/14 : run pip install latch==2.67.18
+ ---> Using cache
+ ---> edd16ea7e57e
+Step 8/14 : run mkdir /opt/latch
+ ---> Using cache
+ ---> 592d4338d14b
+Step 9/14 : copy requirements.txt /opt/latch/requirements.txt
+ ---> Using cache
+ ---> a5b63b0d792b
+Step 10/14 : run pip install --requirement /opt/latch/requirements.txt
+ ---> Using cache
+ ---> f20f8e8f1a84
+Step 11/14 : copy . /root/
+ ---> ac6abb4e7e32
+Step 12/14 : arg tag
+ ---> Running in 39beafeec87f
+ ---> 58917aa44d17
+Step 13/14 : env FLYTE_INTERNAL_IMAGE $tag
+ ---> Running in 99bdad28ea95
+ ---> 2dcbfe60313d
+Step 14/14 : workdir /root
+ ---> Running in 5d334c2470f5
+ ---> 3e18dde799e6
+Successfully built 3e18dde799e6
+Successfully tagged 812206152185.dkr.ecr.us-west-2.amazonaws.com/39689_wf_init_boltzgen_workflow:0.0.1-db1672-wip-a04284

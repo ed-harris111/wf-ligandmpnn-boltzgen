@@ -1,0 +1,25 @@
+Step 1/15 : FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu20.04
+ ---> a1ffe80dc4e1
+Step 2/15 : COPY --from=812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base-cuda:fe0b-main /bin/flytectl /bin/flytectl
+ ---> Using cache
+ ---> 1efd5fd57e3f
+Step 3/15 : workdir /tmp/docker-build/work/
+ ---> Running in d6e679d5fa95
+ ---> eb817fee1980
+Step 4/15 : shell [     "/usr/bin/env", "bash",     "-o", "errexit",     "-o", "pipefail",     "-o", "nounset",     "-o", "verbose",     "-o", "errtrace",     "-O", "inherit_errexit",     "-O", "shift_verbose",     "-c" ]
+ ---> Running in cc27cceac0d5
+ ---> 40928ae6f2f0
+Step 5/15 : env TZ='Etc/UTC'
+ ---> Running in 7e63d42b32ae
+ ---> fee898f8ead0
+Step 6/15 : env LANG='en_US.UTF-8'
+ ---> Running in 771c4809c8a7
+ ---> e2a471c9ce44
+Step 7/15 : arg DEBIAN_FRONTEND=noninteractive
+ ---> Running in 99c658189016
+ ---> 52f4ec19112e
+Step 8/15 : run pip install latch==2.67.18
+ ---> Running in 4ebf4d46e14e
+[91mpip install latch==2.67.18
+[0m[91mbash: pip: command not found
+[0mThe command '/usr/bin/env bash -o errexit -o pipefail -o nounset -o verbose -o errtrace -O inherit_errexit -O shift_verbose -c pip install latch==2.67.18' returned a non-zero code: 127

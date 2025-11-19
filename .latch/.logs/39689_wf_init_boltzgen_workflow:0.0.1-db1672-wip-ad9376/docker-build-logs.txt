@@ -1,0 +1,34 @@
+Step 1/21 : FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu20.04
+ ---> a1ffe80dc4e1
+Step 2/21 : COPY --from=812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base-cuda:fe0b-main /bin/flytectl /bin/flytectl
+ ---> Using cache
+ ---> 1efd5fd57e3f
+Step 3/21 : WORKDIR /root
+ ---> Using cache
+ ---> be988766149a
+Step 4/21 : ENV VENV /opt/venv
+ ---> Using cache
+ ---> 0bc8763049c1
+Step 5/21 : ENV LANG C.UTF-8
+ ---> Using cache
+ ---> b0fe75b2d533
+Step 6/21 : ENV LC_ALL C.UTF-8
+ ---> Using cache
+ ---> 2acc0400eac3
+Step 7/21 : ENV PYTHONPATH /root
+ ---> Using cache
+ ---> 3c0ee4bb8a3e
+Step 8/21 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 5c4762b10eab
+Step 9/21 : shell [     "/usr/bin/env", "bash",     "-o", "errexit",     "-o", "pipefail",     "-o", "nounset",     "-o", "verbose",     "-o", "errtrace",     "-O", "inherit_errexit",     "-O", "shift_verbose",     "-c" ]
+ ---> Using cache
+ ---> a0c1e69ba455
+Step 10/21 : RUN apt-get install -y software-properties-common &&    add-apt-repository -y ppa:deadsnakes/ppa &&    apt-get install -y python3.9 python3-pip python3.9-distutils curl
+ ---> Running in 719660a25c7e
+[91mapt-get install -y software-properties-common &&    add-apt-repository -y ppa:deadsnakes/ppa &&    apt-get install -y python3.9 python3-pip python3.9-distutils curl
+[0mReading package lists...
+Building dependency tree...
+Reading state information...
+[91mE: Unable to locate package software-properties-common
+[0mThe command '/usr/bin/env bash -o errexit -o pipefail -o nounset -o verbose -o errtrace -O inherit_errexit -O shift_verbose -c apt-get install -y software-properties-common &&    add-apt-repository -y ppa:deadsnakes/ppa &&    apt-get install -y python3.9 python3-pip python3.9-distutils curl' returned a non-zero code: 100

@@ -1,0 +1,12 @@
+Step 1/27 : FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu20.04
+ ---> a1ffe80dc4e1
+Step 2/27 : COPY --from=812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base-cuda:cb01-main /bin/flytectl /bin/flytectl
+ ---> Using cache
+ ---> 1efd5fd57e3f
+Step 3/27 : WORKDIR /root
+ ---> Using cache
+ ---> be988766149a
+Step 4/27 : RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip" &&     apt-get update && apt-get install -y unzip &&     unzip /tmp/awscliv2.zip -d /tmp &&     /tmp/aws/install &&     rm -rf /tmp/aws /tmp/awscliv2.zip
+ ---> Running in 11267a6aba23
+[91m/bin/sh: 1: curl: not found
+[0mThe command '/bin/sh -c curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip" &&     apt-get update && apt-get install -y unzip &&     unzip /tmp/awscliv2.zip -d /tmp &&     /tmp/aws/install &&     rm -rf /tmp/aws /tmp/awscliv2.zip' returned a non-zero code: 127

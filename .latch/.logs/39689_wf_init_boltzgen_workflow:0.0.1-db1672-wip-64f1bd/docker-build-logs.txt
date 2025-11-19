@@ -1,0 +1,164 @@
+Step 1/16 : FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu20.04
+ ---> a1ffe80dc4e1
+Step 2/16 : COPY --from=812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base-cuda:fe0b-main /bin/flytectl /bin/flytectl
+ ---> Using cache
+ ---> 1efd5fd57e3f
+Step 3/16 : workdir /tmp/docker-build/work/
+ ---> Using cache
+ ---> eb817fee1980
+Step 4/16 : shell [     "/usr/bin/env", "bash",     "-o", "errexit",     "-o", "pipefail",     "-o", "nounset",     "-o", "verbose",     "-o", "errtrace",     "-O", "inherit_errexit",     "-O", "shift_verbose",     "-c" ]
+ ---> Using cache
+ ---> 40928ae6f2f0
+Step 5/16 : env TZ='Etc/UTC'
+ ---> Using cache
+ ---> fee898f8ead0
+Step 6/16 : env LANG='en_US.UTF-8'
+ ---> Using cache
+ ---> e2a471c9ce44
+Step 7/16 : arg DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 52f4ec19112e
+Step 8/16 : RUN apt-get update && apt-get install -y libattr1-dev python3.9-dev &&     rm -rf /var/lib/apt/lists/*
+ ---> Running in 097522f4996b
+[91mapt-get update && apt-get install -y libattr1-dev python3.9-dev &&     rm -rf /var/lib/apt/lists/*
+[0mGet:1 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64  InRelease [1581 B]
+Get:2 http://archive.ubuntu.com/ubuntu focal InRelease [265 kB]
+Get:3 http://security.ubuntu.com/ubuntu focal-security InRelease [128 kB]
+Get:4 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64  Packages [2774 kB]
+Get:5 http://security.ubuntu.com/ubuntu focal-security/multiverse amd64 Packages [33.1 kB]
+Get:6 http://archive.ubuntu.com/ubuntu focal-updates InRelease [128 kB]
+Get:7 http://security.ubuntu.com/ubuntu focal-security/universe amd64 Packages [1308 kB]
+Get:8 http://archive.ubuntu.com/ubuntu focal-backports InRelease [128 kB]
+Get:9 http://archive.ubuntu.com/ubuntu focal/main amd64 Packages [1275 kB]
+Get:10 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 Packages [4801 kB]
+Get:11 http://archive.ubuntu.com/ubuntu focal/restricted amd64 Packages [33.4 kB]
+Get:12 http://archive.ubuntu.com/ubuntu focal/universe amd64 Packages [11.3 MB]
+Get:13 http://security.ubuntu.com/ubuntu focal-security/main amd64 Packages [4432 kB]
+Get:14 http://archive.ubuntu.com/ubuntu focal/multiverse amd64 Packages [177 kB]
+Get:15 http://archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 Packages [36.8 kB]
+Get:16 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 Packages [1599 kB]
+Get:17 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 Packages [4920 kB]
+Get:18 http://archive.ubuntu.com/ubuntu focal-updates/restricted amd64 Packages [4998 kB]
+Get:19 http://archive.ubuntu.com/ubuntu focal-backports/main amd64 Packages [55.2 kB]
+Get:20 http://archive.ubuntu.com/ubuntu focal-backports/universe amd64 Packages [28.6 kB]
+Fetched 38.5 MB in 4s (9132 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  file libexpat1 libexpat1-dev libmagic-mgc libmagic1 libpython3.9
+  libpython3.9-dev libpython3.9-minimal libpython3.9-stdlib mime-support
+  python3.9 python3.9-minimal tzdata zlib1g-dev
+Suggested packages:
+  python3.9-venv python3.9-doc binfmt-support
+The following NEW packages will be installed:
+  file libattr1-dev libexpat1 libexpat1-dev libmagic-mgc libmagic1
+  libpython3.9 libpython3.9-dev libpython3.9-minimal libpython3.9-stdlib
+  mime-support python3.9 python3.9-dev python3.9-minimal tzdata zlib1g-dev
+0 upgraded, 16 newly installed, 0 to remove and 85 not upgraded.
+Need to get 12.3 MB of archives.
+After this operation, 59.5 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 libpython3.9-minimal amd64 3.9.5-3ubuntu0~20.04.1 [756 kB]
+Get:2 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libexpat1 amd64 2.2.9-1ubuntu0.8 [75.6 kB]
+Get:3 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 python3.9-minimal amd64 3.9.5-3ubuntu0~20.04.1 [2022 kB]
+Get:4 http://archive.ubuntu.com/ubuntu focal/main amd64 libmagic-mgc amd64 1:5.38-4 [218 kB]
+Get:5 http://archive.ubuntu.com/ubuntu focal/main amd64 libmagic1 amd64 1:5.38-4 [75.9 kB]
+Get:6 http://archive.ubuntu.com/ubuntu focal/main amd64 file amd64 1:5.38-4 [23.3 kB]
+Get:7 http://archive.ubuntu.com/ubuntu focal/main amd64 mime-support all 3.64ubuntu1 [30.6 kB]
+Get:8 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 tzdata all 2025b-0ubuntu0.20.04.1 [300 kB]
+Get:9 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libexpat1-dev amd64 2.2.9-1ubuntu0.8 [117 kB]
+Get:10 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 libpython3.9-stdlib amd64 3.9.5-3ubuntu0~20.04.1 [1778 kB]
+Get:11 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 libpython3.9 amd64 3.9.5-3ubuntu0~20.04.1 [1714 kB]
+Get:12 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 zlib1g-dev amd64 1:1.2.11.dfsg-2ubuntu1.5 [155 kB]
+Get:13 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 libpython3.9-dev amd64 3.9.5-3ubuntu0~20.04.1 [4126 kB]
+Get:14 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 python3.9 amd64 3.9.5-3ubuntu0~20.04.1 [423 kB]
+Get:15 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 python3.9-dev amd64 3.9.5-3ubuntu0~20.04.1 [510 kB]
+Get:16 http://archive.ubuntu.com/ubuntu focal/main amd64 libattr1-dev amd64 1:2.4.48-5 [22.8 kB]
+[91mperl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+[0m[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 12.3 MB in 2s (5450 kB/s)
+Selecting previously unselected package libpython3.9-minimal:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 13744 files and directories currently installed.)
+Preparing to unpack .../00-libpython3.9-minimal_3.9.5-3ubuntu0~20.04.1_amd64.deb ...
+Unpacking libpython3.9-minimal:amd64 (3.9.5-3ubuntu0~20.04.1) ...
+Selecting previously unselected package libexpat1:amd64.
+Preparing to unpack .../01-libexpat1_2.2.9-1ubuntu0.8_amd64.deb ...
+Unpacking libexpat1:amd64 (2.2.9-1ubuntu0.8) ...
+Selecting previously unselected package python3.9-minimal.
+Preparing to unpack .../02-python3.9-minimal_3.9.5-3ubuntu0~20.04.1_amd64.deb ...
+Unpacking python3.9-minimal (3.9.5-3ubuntu0~20.04.1) ...
+Selecting previously unselected package libmagic-mgc.
+Preparing to unpack .../03-libmagic-mgc_1%3a5.38-4_amd64.deb ...
+Unpacking libmagic-mgc (1:5.38-4) ...
+Selecting previously unselected package libmagic1:amd64.
+Preparing to unpack .../04-libmagic1_1%3a5.38-4_amd64.deb ...
+Unpacking libmagic1:amd64 (1:5.38-4) ...
+Selecting previously unselected package file.
+Preparing to unpack .../05-file_1%3a5.38-4_amd64.deb ...
+Unpacking file (1:5.38-4) ...
+Selecting previously unselected package mime-support.
+Preparing to unpack .../06-mime-support_3.64ubuntu1_all.deb ...
+Unpacking mime-support (3.64ubuntu1) ...
+Selecting previously unselected package tzdata.
+Preparing to unpack .../07-tzdata_2025b-0ubuntu0.20.04.1_all.deb ...
+Unpacking tzdata (2025b-0ubuntu0.20.04.1) ...
+Selecting previously unselected package libexpat1-dev:amd64.
+Preparing to unpack .../08-libexpat1-dev_2.2.9-1ubuntu0.8_amd64.deb ...
+Unpacking libexpat1-dev:amd64 (2.2.9-1ubuntu0.8) ...
+Selecting previously unselected package libpython3.9-stdlib:amd64.
+Preparing to unpack .../09-libpython3.9-stdlib_3.9.5-3ubuntu0~20.04.1_amd64.deb ...
+Unpacking libpython3.9-stdlib:amd64 (3.9.5-3ubuntu0~20.04.1) ...
+Selecting previously unselected package libpython3.9:amd64.
+Preparing to unpack .../10-libpython3.9_3.9.5-3ubuntu0~20.04.1_amd64.deb ...
+Unpacking libpython3.9:amd64 (3.9.5-3ubuntu0~20.04.1) ...
+Selecting previously unselected package zlib1g-dev:amd64.
+Preparing to unpack .../11-zlib1g-dev_1%3a1.2.11.dfsg-2ubuntu1.5_amd64.deb ...
+Unpacking zlib1g-dev:amd64 (1:1.2.11.dfsg-2ubuntu1.5) ...
+Selecting previously unselected package libpython3.9-dev:amd64.
+Preparing to unpack .../12-libpython3.9-dev_3.9.5-3ubuntu0~20.04.1_amd64.deb ...
+Unpacking libpython3.9-dev:amd64 (3.9.5-3ubuntu0~20.04.1) ...
+Selecting previously unselected package python3.9.
+Preparing to unpack .../13-python3.9_3.9.5-3ubuntu0~20.04.1_amd64.deb ...
+Unpacking python3.9 (3.9.5-3ubuntu0~20.04.1) ...
+Selecting previously unselected package python3.9-dev.
+Preparing to unpack .../14-python3.9-dev_3.9.5-3ubuntu0~20.04.1_amd64.deb ...
+Unpacking python3.9-dev (3.9.5-3ubuntu0~20.04.1) ...
+Selecting previously unselected package libattr1-dev:amd64.
+Preparing to unpack .../15-libattr1-dev_1%3a2.4.48-5_amd64.deb ...
+Unpacking libattr1-dev:amd64 (1:2.4.48-5) ...
+Setting up libexpat1:amd64 (2.2.9-1ubuntu0.8) ...
+Setting up mime-support (3.64ubuntu1) ...
+Setting up libattr1-dev:amd64 (1:2.4.48-5) ...
+Setting up libmagic-mgc (1:5.38-4) ...
+Setting up libpython3.9-minimal:amd64 (3.9.5-3ubuntu0~20.04.1) ...
+Setting up libmagic1:amd64 (1:5.38-4) ...
+Setting up file (1:5.38-4) ...
+Setting up tzdata (2025b-0ubuntu0.20.04.1) ...
+
+Current default time zone: 'Etc/UTC'
+Local time is now:      Wed Nov 19 02:11:35 UTC 2025.
+Universal Time is now:  Wed Nov 19 02:11:35 UTC 2025.
+Run 'dpkg-reconfigure tzdata' if you wish to change it.
+
+Setting up libexpat1-dev:amd64 (2.2.9-1ubuntu0.8) ...
+Setting up zlib1g-dev:amd64 (1:1.2.11.dfsg-2ubuntu1.5) ...
+Setting up python3.9-minimal (3.9.5-3ubuntu0~20.04.1) ...
+Setting up libpython3.9-stdlib:amd64 (3.9.5-3ubuntu0~20.04.1) ...
+Setting up libpython3.9:amd64 (3.9.5-3ubuntu0~20.04.1) ...
+Setting up python3.9 (3.9.5-3ubuntu0~20.04.1) ...
+Setting up libpython3.9-dev:amd64 (3.9.5-3ubuntu0~20.04.1) ...
+Setting up python3.9-dev (3.9.5-3ubuntu0~20.04.1) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.12) ...
+ ---> f29f12aa86d6
+Step 9/16 : RUN python3.9 -m pip install latch==2.67.12
+ ---> Running in 371f0f448d5a
+[91mpython3.9 -m pip install latch==2.67.12
+[0m[91m/usr/bin/python3.9: No module named pip
+[0mThe command '/usr/bin/env bash -o errexit -o pipefail -o nounset -o verbose -o errtrace -O inherit_errexit -O shift_verbose -c python3.9 -m pip install latch==2.67.12' returned a non-zero code: 1

@@ -1,0 +1,24 @@
+[91m[WARNING]: Empty continuation line found in: shell [     "/usr/bin/env", "bash",     "-o", "errexit",     "-o", "pipefail",     "-o", "nounset",     "-o", "verbose",     "-o", "errtrace",     "-O", "inherit_errexit",     "-O", "shift_verbose",     "-c" ]
+[0m[91m[WARNING]: Empty continuation lines will become errors in a future release.
+[0mStep 1/14 : FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu20.04
+ ---> a1ffe80dc4e1
+Step 2/14 : workdir /tmp/docker-build/work/
+ ---> Running in 207a7ac0903d
+ ---> aa1a8d752498
+Step 3/14 : shell [     "/usr/bin/env", "bash",     "-o", "errexit",     "-o", "pipefail",     "-o", "nounset",     "-o", "verbose",     "-o", "errtrace",     "-O", "inherit_errexit",     "-O", "shift_verbose",     "-c" ]
+ ---> Running in 3171a22e7198
+ ---> f1686b51a5c2
+Step 4/14 : env TZ='Etc/UTC'
+ ---> Running in 00ffbdd325cb
+ ---> 968273d271b3
+Step 5/14 : env LANG='en_US.UTF-8'
+ ---> Running in 64b295981181
+ ---> 4e1d36e9f2c3
+Step 6/14 : arg DEBIAN_FRONTEND=noninteractive
+ ---> Running in 38e0fb5819ed
+ ---> 4fe6bc8a6ebc
+Step 7/14 : run pip install latch==2.67.18
+ ---> Running in 84fda662701e
+[91mpip install latch==2.67.18
+[0m[91mbash: pip: command not found
+[0mThe command '/usr/bin/env bash -o errexit -o pipefail -o nounset -o verbose -o errtrace -O inherit_errexit -O shift_verbose -c pip install latch==2.67.18' returned a non-zero code: 127

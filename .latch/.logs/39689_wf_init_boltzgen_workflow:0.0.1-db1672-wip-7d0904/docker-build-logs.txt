@@ -1,0 +1,22 @@
+Step 1/17 : FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu20.04
+ ---> a1ffe80dc4e1
+Step 2/17 : COPY --from=812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base-cuda:fe0b-main /bin/flytectl /bin/flytectl
+ ---> Using cache
+ ---> 1efd5fd57e3f
+Step 3/17 : workdir /tmp/docker-build/work/
+ ---> Using cache
+ ---> eb817fee1980
+Step 4/17 : shell [     "/usr/bin/env", "bash",     "-o", "errexit",     "-o", "pipefail",     "-o", "nounset",     "-o", "verbose",     "-o", "errtrace",     "-O", "inherit_errexit",     "-O", "shift_verbose",     "-c" ]
+ ---> Using cache
+ ---> 40928ae6f2f0
+Step 5/17 : env TZ='Etc/UTC'
+ ---> Using cache
+ ---> fee898f8ead0
+Step 6/17 : env LANG='en_US.UTF-8'
+ ---> Using cache
+ ---> e2a471c9ce44
+Step 7/17 : RUN python3.9 -m pip install --upgrade pip && python3.9 -m pip install awscli
+ ---> Running in 2ff337504b8c
+[91mpython3.9 -m pip install --upgrade pip && python3.9 -m pip install awscli
+[0m[91mbash: python3.9: command not found
+[0mThe command '/usr/bin/env bash -o errexit -o pipefail -o nounset -o verbose -o errtrace -O inherit_errexit -O shift_verbose -c python3.9 -m pip install --upgrade pip && python3.9 -m pip install awscli' returned a non-zero code: 127

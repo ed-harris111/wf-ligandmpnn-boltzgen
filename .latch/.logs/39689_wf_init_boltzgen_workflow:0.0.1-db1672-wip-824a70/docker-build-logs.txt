@@ -1,0 +1,89 @@
+Step 1/14 : from 812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base:cb01-main
+ ---> 507607c2b5ea
+Step 2/14 : workdir /tmp/docker-build/work/
+ ---> Using cache
+ ---> 3b5eb2da1ce3
+Step 3/14 : shell [     "/usr/bin/env", "bash",     "-o", "errexit",     "-o", "pipefail",     "-o", "nounset",     "-o", "verbose",     "-o", "errtrace",     "-O", "inherit_errexit",     "-O", "shift_verbose",     "-c" ]
+ ---> Using cache
+ ---> 2af6bafaff25
+Step 4/14 : env TZ='Etc/UTC'
+ ---> Using cache
+ ---> 5b7579be9ce0
+Step 5/14 : env LANG='en_US.UTF-8'
+ ---> Using cache
+ ---> 5740eabe5ff3
+Step 6/14 : arg DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 6aedbe938026
+Step 7/14 : run pip install latch==2.67.18
+ ---> Using cache
+ ---> edd16ea7e57e
+Step 8/14 : run mkdir /opt/latch
+ ---> Using cache
+ ---> 592d4338d14b
+Step 9/14 : copy requirements.txt /opt/latch/requirements.txt
+ ---> Using cache
+ ---> 7eb586806404
+Step 10/14 : run pip install --requirement /opt/latch/requirements.txt
+ ---> Running in 68bdc6f8653b
+[91mpip install --requirement /opt/latch/requirements.txt
+[0mCollecting numpy==2.0.2 (from -r /opt/latch/requirements.txt (line 1))
+  Downloading numpy-2.0.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (60 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.9/60.9 kB 2.0 MB/s eta 0:00:00
+Collecting numba==0.61.0 (from -r /opt/latch/requirements.txt (line 2))
+  Downloading numba-0.61.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.8 kB)
+Collecting matplotlib (from -r /opt/latch/requirements.txt (line 3))
+  Downloading matplotlib-3.10.7-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (11 kB)
+Collecting hydride (from -r /opt/latch/requirements.txt (line 4))
+  Downloading hydride-1.2.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.6 kB)
+Collecting biotite (from -r /opt/latch/requirements.txt (line 5))
+  Downloading biotite-1.5.0-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (5.5 kB)
+Collecting pydssp (from -r /opt/latch/requirements.txt (line 6))
+  Downloading pydssp-0.9.1-py3-none-any.whl.metadata (4.9 kB)
+Collecting logomaker (from -r /opt/latch/requirements.txt (line 7))
+  Downloading logomaker-0.8.7-py3-none-any.whl.metadata (2.6 kB)
+Collecting gemmi==0.6.5 (from -r /opt/latch/requirements.txt (line 8))
+  Downloading gemmi-0.6.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.3 kB)
+Collecting torch>=2.4.1 (from -r /opt/latch/requirements.txt (line 9))
+  Downloading torch-2.9.1-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (30 kB)
+Collecting scikit-learn (from -r /opt/latch/requirements.txt (line 10))
+  Downloading scikit_learn-1.7.2-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (11 kB)
+Collecting hydra-core (from -r /opt/latch/requirements.txt (line 11))
+  Downloading hydra_core-1.3.2-py3-none-any.whl.metadata (5.5 kB)
+Collecting edit_distance (from -r /opt/latch/requirements.txt (line 12))
+  Downloading edit_distance-1.0.7-py3-none-any.whl.metadata (4.9 kB)
+Collecting pytorch-lightning (from -r /opt/latch/requirements.txt (line 13))
+  Downloading pytorch_lightning-2.5.6-py3-none-any.whl.metadata (20 kB)
+Collecting rdkit (from -r /opt/latch/requirements.txt (line 14))
+  Downloading rdkit-2025.9.1-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (4.1 kB)
+Collecting pandas (from -r /opt/latch/requirements.txt (line 15))
+  Downloading pandas-2.3.3-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (91 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 91.2/91.2 kB 4.3 MB/s eta 0:00:00
+Collecting pdbeccdutils (from -r /opt/latch/requirements.txt (line 16))
+  Downloading pdbeccdutils-1.0.0-py3-none-any.whl.metadata (5.4 kB)
+Collecting einx (from -r /opt/latch/requirements.txt (line 17))
+  Downloading einx-0.3.0-py3-none-any.whl.metadata (6.9 kB)
+Collecting einops (from -r /opt/latch/requirements.txt (line 18))
+  Downloading einops-0.8.1-py3-none-any.whl.metadata (13 kB)
+Collecting mashumaro (from -r /opt/latch/requirements.txt (line 19))
+  Downloading mashumaro-3.17-py3-none-any.whl.metadata (118 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 118.2/118.2 kB 5.1 MB/s eta 0:00:00
+Collecting nvidia-ml-py>=12.535.133 (from -r /opt/latch/requirements.txt (line 20))
+  Downloading nvidia_ml_py-13.580.82-py3-none-any.whl.metadata (9.6 kB)
+Collecting cuequivariance_ops_cu12>=0.5.0 (from -r /opt/latch/requirements.txt (line 21))
+  Downloading cuequivariance_ops_cu12-0.7.0-py3-none-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (19 kB)
+Collecting cuequivariance_ops_torch_cu12>=0.5.0 (from -r /opt/latch/requirements.txt (line 22))
+  Downloading cuequivariance_ops_torch_cu12-0.7.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (20 kB)
+Collecting cuequivariance_torch>=0.5.0 (from -r /opt/latch/requirements.txt (line 23))
+  Downloading cuequivariance_torch-0.7.0-py3-none-any.whl.metadata (15 kB)
+Collecting huggingface_hub (from -r /opt/latch/requirements.txt (line 24))
+  Downloading huggingface_hub-1.1.4-py3-none-any.whl.metadata (13 kB)
+Collecting biopython (from -r /opt/latch/requirements.txt (line 25))
+  Downloading biopython-1.86-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (13 kB)
+[91mERROR: Ignored the following versions that require a different python version: 0.52.0 Requires-Python >=3.6,<3.9; 0.52.0rc3 Requires-Python >=3.6,<3.9; 0.53.0 Requires-Python >=3.6,<3.10; 0.53.0rc1.post1 Requires-Python >=3.6,<3.10; 0.53.0rc2 Requires-Python >=3.6,<3.10; 0.53.0rc3 Requires-Python >=3.6,<3.10; 0.53.1 Requires-Python >=3.6,<3.10; 0.54.0 Requires-Python >=3.7,<3.10; 0.54.0rc2 Requires-Python >=3.7,<3.10; 0.54.0rc3 Requires-Python >=3.7,<3.10; 0.54.1 Requires-Python >=3.7,<3.10; 0.55.0 Requires-Python >=3.7,<3.11; 0.55.0rc1 Requires-Python >=3.7,<3.11; 0.55.1 Requires-Python >=3.7,<3.11; 0.55.2 Requires-Python >=3.7,<3.11; 1.21.2 Requires-Python >=3.7,<3.11; 1.21.3 Requires-Python >=3.7,<3.11; 1.21.4 Requires-Python >=3.7,<3.11; 1.21.5 Requires-Python >=3.7,<3.11; 1.21.6 Requires-Python >=3.7,<3.11
+[0m[91mERROR: Could not find a version that satisfies the requirement nvcc (from versions: none)
+ERROR: No matching distribution found for nvcc
+[0m[91m
+[notice] A new release of pip is available: 24.0 -> 25.3
+[notice] To update, run: pip install --upgrade pip
+[0mThe command '/usr/bin/env bash -o errexit -o pipefail -o nounset -o verbose -o errtrace -O inherit_errexit -O shift_verbose -c pip install --requirement /opt/latch/requirements.txt' returned a non-zero code: 1

@@ -1,0 +1,9 @@
+Step 1/15 : FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu20.04
+ ---> a1ffe80dc4e1
+Step 2/15 : RUN apt-get install -y software-properties-common &&    add-apt-repository -y ppa:deadsnakes/ppa &&    apt-get install -y python3.9 python3-pip python3.9-distutils curl
+ ---> Running in 444a53d48cd6
+Reading package lists...
+Building dependency tree...
+Reading state information...
+[91mE: Unable to locate package software-properties-common
+[0mThe command '/bin/sh -c apt-get install -y software-properties-common &&    add-apt-repository -y ppa:deadsnakes/ppa &&    apt-get install -y python3.9 python3-pip python3.9-distutils curl' returned a non-zero code: 100

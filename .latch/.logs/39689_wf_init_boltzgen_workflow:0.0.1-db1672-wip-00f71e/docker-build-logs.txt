@@ -1,0 +1,56 @@
+Step 1/13 : from 812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base:cb01-main
+ ---> 507607c2b5ea
+Step 2/13 : workdir /tmp/docker-build/work/
+ ---> Using cache
+ ---> 3b5eb2da1ce3
+Step 3/13 : shell [     "/usr/bin/env", "bash",     "-o", "errexit",     "-o", "pipefail",     "-o", "nounset",     "-o", "verbose",     "-o", "errtrace",     "-O", "inherit_errexit",     "-O", "shift_verbose",     "-c" ]
+ ---> Using cache
+ ---> 2af6bafaff25
+Step 4/13 : env TZ='Etc/UTC'
+ ---> Using cache
+ ---> 5b7579be9ce0
+Step 5/13 : env LANG='en_US.UTF-8'
+ ---> Using cache
+ ---> 5740eabe5ff3
+Step 6/13 : arg DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 6aedbe938026
+Step 7/13 : run pip install latch==2.67.18
+ ---> Using cache
+ ---> edd16ea7e57e
+Step 8/13 : run mkdir /opt/latch
+ ---> Using cache
+ ---> 592d4338d14b
+Step 9/13 : copy . /root/
+ ---> 76464aee6b95
+Step 10/13 : run pip install /root/.
+ ---> Running in a667b96dc0d0
+[91mpip install /root/.
+[0mProcessing /root
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'error'
+[91m  error: subprocess-exited-with-error
+  
+  × Getting requirements to build wheel did not run successfully.
+  │ exit code: 1
+  ╰─> [4 lines of output]
+      /tmp/pip-build-env-pyv5x6s3/overlay/lib/python3.11/site-packages/setuptools/config/expand.py:126: SetuptoolsWarning: File '/root/PYPI_DESCRIPTION.md' cannot be found
+        return '\n'.join(
+      running egg_info
+      error: error in 'egg_base' option: 'src' does not exist or is not a directory
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+[0m[91merror: subprocess-exited-with-error
+
+× Getting requirements to build wheel did not run successfully.
+│ exit code: 1
+╰─> See above for output.
+
+note: This error originates from a subprocess, and is likely not a problem with pip.
+[0m[91m
+[notice] A new release of pip is available: 24.0 -> 25.3
+[notice] To update, run: pip install --upgrade pip
+[0mThe command '/usr/bin/env bash -o errexit -o pipefail -o nounset -o verbose -o errtrace -O inherit_errexit -O shift_verbose -c pip install /root/.' returned a non-zero code: 1

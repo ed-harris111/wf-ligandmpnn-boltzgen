@@ -1,0 +1,49 @@
+Step 1/22 : FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu20.04
+ ---> a1ffe80dc4e1
+Step 2/22 : COPY --from=812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base-cuda:cb01-main /bin/flytectl /bin/flytectl
+ ---> Using cache
+ ---> 1efd5fd57e3f
+Step 3/22 : WORKDIR /root
+ ---> Using cache
+ ---> be988766149a
+Step 4/22 : ENV VENV /opt/venv
+ ---> Using cache
+ ---> 0bc8763049c1
+Step 5/22 : ENV LANG C.UTF-8
+ ---> Using cache
+ ---> b0fe75b2d533
+Step 6/22 : ENV LC_ALL C.UTF-8
+ ---> Using cache
+ ---> 2acc0400eac3
+Step 7/22 : ENV PYTHONPATH /root
+ ---> Using cache
+ ---> 3c0ee4bb8a3e
+Step 8/22 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 5c4762b10eab
+Step 9/22 : RUN apt-get update && apt-get install -y libsm6 libxext6 libxrender-dev build-essential procps rsync openssh-server
+ ---> Using cache
+ ---> 99eee343dcf8
+Step 10/22 : RUN apt-get install -y software-properties-common &&    add-apt-repository -y ppa:deadsnakes/ppa &&    apt-get install -y python3.9 python3-pip python3.9-distutils curl
+ ---> Using cache
+ ---> 760a009e16b3
+Step 11/22 : RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh &&     bash miniconda.sh -b -p /root/miniconda &&     rm miniconda.sh
+ ---> Using cache
+ ---> c8ed28eabab1
+Step 12/22 : RUN /root/miniconda/bin/conda create --name mlfold python=3.11 -y &&     /root/miniconda/bin/conda run --name mlfold conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia -y
+ ---> Running in b8cff54ca4ad
+[91m
+CondaToSNonInteractiveError: Terms of Service have not been accepted for the following channels. Please accept or remove them before proceeding:
+    - https://repo.anaconda.com/pkgs/main
+    - https://repo.anaconda.com/pkgs/r
+
+To accept these channels' Terms of Service, run the following commands:
+    conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
+    conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
+
+For information on safely removing channels from your conda configuration,
+please see the official documentation:
+
+    https://www.anaconda.com/docs/tools/working-with-conda/channels
+
+[0mThe command '/bin/sh -c /root/miniconda/bin/conda create --name mlfold python=3.11 -y &&     /root/miniconda/bin/conda run --name mlfold conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia -y' returned a non-zero code: 1
