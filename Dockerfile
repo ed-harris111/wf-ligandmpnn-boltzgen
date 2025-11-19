@@ -6,12 +6,6 @@ WORKDIR /root
 
 #FIX INSTALLING AWS CLI
 
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip" && \
-    apt-get update && apt-get install -y unzip && \
-    unzip /tmp/awscliv2.zip -d /tmp && \
-    /tmp/aws/install && \
-    rm -rf /tmp/aws /tmp/awscliv2.zip
-
 
 ENV VENV /opt/venv
 ENV LANG C.UTF-8
@@ -28,7 +22,10 @@ COPY --from=812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base-cuda:fe0b-ma
 RUN apt-get install -y software-properties-common &&\
     add-apt-repository -y ppa:deadsnakes/ppa &&\
     apt-get install -y python3.9 python3-pip python3.9-distutils curl
-    
+
+    #installing awscli
+RUN python3.9 -m pip install --upgrade pip && python3.9 -m pip install awscli
+
 
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh && \
     bash miniconda.sh -b -p /root/miniconda && \
@@ -50,6 +47,9 @@ arg DEBIAN_FRONTEND=noninteractive
 
 # Latch SDK
 # DO NOT REMOVE
+RUN apt-get update && apt-get install -y \
+    python3.9 python3.9-dev python3-pip python3.9-distutils curl \
+    build-essential libattr1-dev attr
 RUN pip install --no-cache-dir --upgrade pip latch
 RUN pip install 'urllib3>=1.26.0,<2.0.0' --force-reinstall
 

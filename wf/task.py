@@ -32,22 +32,20 @@ def boltzgen_task(
 
     print("-" * 60)
     print("Running BoltzGen")
-    boltzgen_dir = Path("/tmp/docker-build/work/boltgen")
 
     command = [
+        "/root/miniconda/bin/conda", "run", "--name", "mlfold",
         "boltzgen", "run",
-        input_yaml.local_path,
-        "--output",
-        str(local_output_dir), 
+        str(input_yaml.local_path),
+        "--output", str(local_output_dir),
         "--steps", "design",
         "--num_designs", "2",
-        ]
-
+    ]
   
     print(f"Running command: {' '.join(command)}")
 
     try:
-        subprocess.run(command, check=True, cwd=boltzgen_dir)
+        subprocess.run(command, check=True, cwd="/root/miniconda/bin/conda")
         print("Done")
     except Exception as e:
         print("FAILED")

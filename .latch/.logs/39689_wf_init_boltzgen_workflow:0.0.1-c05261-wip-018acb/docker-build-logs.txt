@@ -1,0 +1,12 @@
+Step 1/27 : FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu20.04
+ ---> a1ffe80dc4e1
+Step 2/27 : COPY --from=812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base-cuda:cb01-main /bin/flytectl /bin/flytectl
+ ---> Using cache
+ ---> 1efd5fd57e3f
+Step 3/27 : WORKDIR /root
+ ---> Using cache
+ ---> be988766149a
+Step 4/27 : RUN python3.9 -m pip install --upgrade pip && python3.9 -m pip install awscli
+ ---> Running in c9fcde4685c8
+[91m/bin/sh: 1: python3.9: not found
+[0mThe command '/bin/sh -c python3.9 -m pip install --upgrade pip && python3.9 -m pip install awscli' returned a non-zero code: 127
