@@ -1,0 +1,22 @@
+Step 1/16 : FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu20.04
+ ---> a1ffe80dc4e1
+Step 2/16 : workdir /tmp/docker-build/work/
+ ---> Using cache
+ ---> aa1a8d752498
+Step 3/16 : shell [     "/usr/bin/env", "bash",     "-o", "errexit",     "-o", "pipefail",     "-o", "nounset",     "-o", "verbose",     "-o", "errtrace",     "-O", "inherit_errexit",     "-O", "shift_verbose",     "-c" ]
+ ---> Using cache
+ ---> f1686b51a5c2
+Step 4/16 : env TZ='Etc/UTC'
+ ---> Using cache
+ ---> 968273d271b3
+Step 5/16 : env LANG='en_US.UTF-8'
+ ---> Using cache
+ ---> 4e1d36e9f2c3
+Step 6/16 : arg DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 4fe6bc8a6ebc
+Step 7/16 : run pip install latch==2.67.18
+ ---> Running in ca7c0e9f61fa
+[91mpip install latch==2.67.18
+[0m[91mbash: pip: command not found
+[0mThe command '/usr/bin/env bash -o errexit -o pipefail -o nounset -o verbose -o errtrace -O inherit_errexit -O shift_verbose -c pip install latch==2.67.18' returned a non-zero code: 127

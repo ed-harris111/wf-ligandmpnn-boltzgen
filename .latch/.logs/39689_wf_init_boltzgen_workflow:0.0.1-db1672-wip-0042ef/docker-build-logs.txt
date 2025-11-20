@@ -1,0 +1,33 @@
+Step 1/16 : from 812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base:cb01-main
+ ---> 507607c2b5ea
+Step 2/16 : workdir /tmp/docker-build/work/
+ ---> Using cache
+ ---> 3b5eb2da1ce3
+Step 3/16 : shell [     "/usr/bin/env", "bash",     "-o", "errexit",     "-o", "pipefail",     "-o", "nounset",     "-o", "verbose",     "-o", "errtrace",     "-O", "inherit_errexit",     "-O", "shift_verbose",     "-c" ]
+ ---> Using cache
+ ---> 2af6bafaff25
+Step 4/16 : env TZ='Etc/UTC'
+ ---> Using cache
+ ---> 5b7579be9ce0
+Step 5/16 : env LANG='en_US.UTF-8'
+ ---> Using cache
+ ---> 5740eabe5ff3
+Step 6/16 : arg DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 6aedbe938026
+Step 7/16 : RUN apt-get update --yes &&     xargs apt-get install --yes aria2 git wget unzip curl fuse &&     apt-get install --fix-broken
+ ---> Using cache
+ ---> dc6f4a3a7b2d
+Step 8/16 : RUN apt-get update --yes &&     apt-get install --yes cuda-toolkit-12-4 &&     ln -s /usr/local/cuda/bin/nvcc /usr/bin/nvcc
+ ---> Running in 2b172ccea902
+[91mapt-get update --yes &&     apt-get install --yes cuda-toolkit-12-4 &&     ln -s /usr/local/cuda/bin/nvcc /usr/bin/nvcc
+[0mHit:1 http://deb.debian.org/debian bookworm InRelease
+Hit:2 http://deb.debian.org/debian bookworm-updates InRelease
+Hit:3 http://deb.debian.org/debian-security bookworm-security InRelease
+Hit:4 https://download.docker.com/linux/debian bookworm InRelease
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+[91mE: Unable to locate package cuda-toolkit-12-4
+[0mThe command '/usr/bin/env bash -o errexit -o pipefail -o nounset -o verbose -o errtrace -O inherit_errexit -O shift_verbose -c apt-get update --yes &&     apt-get install --yes cuda-toolkit-12-4 &&     ln -s /usr/local/cuda/bin/nvcc /usr/bin/nvcc' returned a non-zero code: 100

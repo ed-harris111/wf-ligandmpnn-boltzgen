@@ -1,0 +1,1549 @@
+Step 1/28 : FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu20.04
+ ---> a1ffe80dc4e1
+Step 2/28 : COPY --from=812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base-cuda:fe0b-main /bin/flytectl /bin/flytectl
+ ---> Using cache
+ ---> 1efd5fd57e3f
+Step 3/28 : workdir /tmp/docker-build/work/
+ ---> Using cache
+ ---> eb817fee1980
+Step 4/28 : ENV VENV /opt/venv
+ ---> Running in c0096ba88236
+ ---> 4e9d2cd865e1
+Step 5/28 : ENV LANG C.UTF-8
+ ---> Running in 862aa565fcc6
+ ---> 5ec9df7cd6ff
+Step 6/28 : ENV LC_ALL C.UTF-8
+ ---> Running in 680a315f4dac
+ ---> bb86adfe4086
+Step 7/28 : ENV PYTHONPATH /root
+ ---> Running in 063d6b676d32
+ ---> f35a9e785d27
+Step 8/28 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Running in 2fac4fae2eaa
+ ---> e8d0e7ef40ee
+Step 9/28 : RUN apt-get update && apt-get install -y libsm6 libxext6 libxrender-dev build-essential procps rsync openssh-server
+ ---> Running in f945373f3552
+Get:1 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64  InRelease [1581 B]
+Get:2 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64  Packages [2774 kB]
+Get:3 http://security.ubuntu.com/ubuntu focal-security InRelease [128 kB]
+Get:4 http://archive.ubuntu.com/ubuntu focal InRelease [265 kB]
+Get:5 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 Packages [4801 kB]
+Get:6 http://archive.ubuntu.com/ubuntu focal-updates InRelease [128 kB]
+Get:7 http://archive.ubuntu.com/ubuntu focal-backports InRelease [128 kB]
+Get:8 http://archive.ubuntu.com/ubuntu focal/multiverse amd64 Packages [177 kB]
+Get:9 http://archive.ubuntu.com/ubuntu focal/restricted amd64 Packages [33.4 kB]
+Get:10 http://archive.ubuntu.com/ubuntu focal/universe amd64 Packages [11.3 MB]
+Get:11 http://security.ubuntu.com/ubuntu focal-security/universe amd64 Packages [1308 kB]
+Get:12 http://security.ubuntu.com/ubuntu focal-security/multiverse amd64 Packages [33.1 kB]
+Get:13 http://security.ubuntu.com/ubuntu focal-security/main amd64 Packages [4432 kB]
+Get:14 http://archive.ubuntu.com/ubuntu focal/main amd64 Packages [1275 kB]
+Get:15 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 Packages [1599 kB]
+Get:16 http://archive.ubuntu.com/ubuntu focal-updates/restricted amd64 Packages [4998 kB]
+Get:17 http://archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 Packages [36.8 kB]
+Get:18 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 Packages [4920 kB]
+Get:19 http://archive.ubuntu.com/ubuntu focal-backports/universe amd64 Packages [28.6 kB]
+Get:20 http://archive.ubuntu.com/ubuntu focal-backports/main amd64 Packages [55.2 kB]
+Fetched 38.5 MB in 4s (9141 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+build-essential is already the newest version (12.8ubuntu1.1).
+build-essential set to manually installed.
+The following additional packages will be installed:
+  dbus distro-info-data dmsetup file gir1.2-glib-2.0 krb5-locales libapparmor1
+  libargon2-1 libbsd0 libcap2 libcbor0.6 libcryptsetup12 libdbus-1-3
+  libdevmapper1.02.1 libedit2 libexpat1 libfido2-1 libgirepository-1.0-1
+  libglib2.0-0 libglib2.0-data libgssapi-krb5-2 libice6 libicu66 libip4tc2
+  libjson-c4 libk5crypto3 libkeyutils1 libkmod2 libkrb5-3 libkrb5support0
+  libmagic-mgc libmagic1 libmpdec2 libnss-systemd libpam-systemd libpopt0
+  libpsl5 libpthread-stubs0-dev libpython3-stdlib libpython3.8-minimal
+  libpython3.8-stdlib libsystemd0 libwrap0 libx11-6 libx11-data libx11-dev
+  libxau-dev libxau6 libxcb1 libxcb1-dev libxdmcp-dev libxdmcp6 libxml2
+  libxmuu1 libxrender1 lsb-release mime-support ncurses-term
+  networkd-dispatcher openssh-client openssh-sftp-server publicsuffix python3
+  python3-certifi python3-chardet python3-dbus python3-distro python3-gi
+  python3-idna python3-minimal python3-pkg-resources python3-requests
+  python3-six python3-urllib3 python3.8 python3.8-minimal shared-mime-info
+  ssh-import-id systemd systemd-sysv systemd-timesyncd tzdata ucf wget
+  x11-common x11proto-core-dev x11proto-dev xauth xdg-user-dirs
+  xorg-sgml-doctools xtrans-dev
+Suggested packages:
+  default-dbus-session-bus | dbus-session-bus krb5-doc krb5-user libx11-doc
+  libxcb-doc iw | wireless-tools keychain libpam-ssh monkeysphere ssh-askpass
+  molly-guard ufw python3-doc python3-tk python3-venv python-dbus-doc
+  python3-dbus-dbg python3-setuptools python3-cryptography python3-openssl
+  python3-socks python3.8-venv python3.8-doc binfmt-support systemd-container
+  policykit-1
+Recommended packages:
+  psmisc
+The following NEW packages will be installed:
+  dbus distro-info-data dmsetup file gir1.2-glib-2.0 krb5-locales libapparmor1
+  libargon2-1 libbsd0 libcap2 libcbor0.6 libcryptsetup12 libdbus-1-3
+  libdevmapper1.02.1 libedit2 libexpat1 libfido2-1 libgirepository-1.0-1
+  libglib2.0-0 libglib2.0-data libgssapi-krb5-2 libice6 libicu66 libip4tc2
+  libjson-c4 libk5crypto3 libkeyutils1 libkmod2 libkrb5-3 libkrb5support0
+  libmagic-mgc libmagic1 libmpdec2 libnss-systemd libpam-systemd libpopt0
+  libpsl5 libpthread-stubs0-dev libpython3-stdlib libpython3.8-minimal
+  libpython3.8-stdlib libsm6 libwrap0 libx11-6 libx11-data libx11-dev
+  libxau-dev libxau6 libxcb1 libxcb1-dev libxdmcp-dev libxdmcp6 libxext6
+  libxml2 libxmuu1 libxrender-dev libxrender1 lsb-release mime-support
+  ncurses-term networkd-dispatcher openssh-client openssh-server
+  openssh-sftp-server publicsuffix python3 python3-certifi python3-chardet
+  python3-dbus python3-distro python3-gi python3-idna python3-minimal
+  python3-pkg-resources python3-requests python3-six python3-urllib3 python3.8
+  python3.8-minimal rsync shared-mime-info ssh-import-id systemd systemd-sysv
+  systemd-timesyncd tzdata ucf wget x11-common x11proto-core-dev x11proto-dev
+  xauth xdg-user-dirs xorg-sgml-doctools xtrans-dev
+The following packages will be upgraded:
+  libsystemd0 procps
+2 upgraded, 95 newly installed, 0 to remove and 83 not upgraded.
+Need to get 28.6 MB of archives.
+After this operation, 124 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libsystemd0 amd64 245.4-4ubuntu3.24 [267 kB]
+Get:2 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libpython3.8-minimal amd64 3.8.10-0ubuntu1~20.04.18 [721 kB]
+Get:3 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libexpat1 amd64 2.2.9-1ubuntu0.8 [75.6 kB]
+Get:4 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 python3.8-minimal amd64 3.8.10-0ubuntu1~20.04.18 [1900 kB]
+Get:5 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-minimal amd64 3.8.2-0ubuntu2 [23.6 kB]
+Get:6 http://archive.ubuntu.com/ubuntu focal/main amd64 mime-support all 3.64ubuntu1 [30.6 kB]
+Get:7 http://archive.ubuntu.com/ubuntu focal/main amd64 libmpdec2 amd64 2.4.2-3 [81.1 kB]
+Get:8 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libpython3.8-stdlib amd64 3.8.10-0ubuntu1~20.04.18 [1676 kB]
+Get:9 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 python3.8 amd64 3.8.10-0ubuntu1~20.04.18 [387 kB]
+Get:10 http://archive.ubuntu.com/ubuntu focal/main amd64 libpython3-stdlib amd64 3.8.2-0ubuntu2 [7068 B]
+Get:11 http://archive.ubuntu.com/ubuntu focal/main amd64 python3 amd64 3.8.2-0ubuntu2 [47.6 kB]
+Get:12 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libapparmor1 amd64 2.13.3-7ubuntu5.4 [36.0 kB]
+Get:13 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libcap2 amd64 1:2.32-1ubuntu0.2 [15.7 kB]
+Get:14 http://archive.ubuntu.com/ubuntu focal/main amd64 libargon2-1 amd64 0~20171227-0.2 [19.2 kB]
+Get:15 http://archive.ubuntu.com/ubuntu focal/main amd64 libdevmapper1.02.1 amd64 2:1.02.167-1ubuntu1 [127 kB]
+Get:16 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libjson-c4 amd64 0.13.1+dfsg-7ubuntu0.3 [29.3 kB]
+Get:17 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libcryptsetup12 amd64 2:2.2.2-3ubuntu2.5 [166 kB]
+Get:18 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libip4tc2 amd64 1.8.4-3ubuntu2.1 [19.1 kB]
+Get:19 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libkmod2 amd64 27-1ubuntu2.1 [45.3 kB]
+Get:20 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 systemd-timesyncd amd64 245.4-4ubuntu3.24 [28.1 kB]
+Get:21 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 systemd amd64 245.4-4ubuntu3.24 [3815 kB]
+Get:22 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 systemd-sysv amd64 245.4-4ubuntu3.24 [10.3 kB]
+Get:23 http://archive.ubuntu.com/ubuntu focal/main amd64 libpopt0 amd64 1.16-14 [26.3 kB]
+Get:24 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 rsync amd64 3.1.3-8ubuntu0.9 [323 kB]
+Get:25 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 procps amd64 2:3.3.16-1ubuntu2.4 [232 kB]
+Get:26 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libdbus-1-3 amd64 1.12.16-2ubuntu2.3 [179 kB]
+Get:27 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 dbus amd64 1.12.16-2ubuntu2.3 [151 kB]
+Get:28 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 distro-info-data all 0.43ubuntu1.19 [5008 B]
+Get:29 http://archive.ubuntu.com/ubuntu focal/main amd64 dmsetup amd64 2:1.02.167-1ubuntu1 [75.6 kB]
+Get:30 http://archive.ubuntu.com/ubuntu focal/main amd64 libmagic-mgc amd64 1:5.38-4 [218 kB]
+Get:31 http://archive.ubuntu.com/ubuntu focal/main amd64 libmagic1 amd64 1:5.38-4 [75.9 kB]
+Get:32 http://archive.ubuntu.com/ubuntu focal/main amd64 file amd64 1:5.38-4 [23.3 kB]
+Get:33 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libglib2.0-0 amd64 2.64.6-1~ubuntu20.04.9 [1290 kB]
+Get:34 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libgirepository-1.0-1 amd64 1.64.1-1~ubuntu20.04.1 [85.7 kB]
+Get:35 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gir1.2-glib-2.0 amd64 1.64.1-1~ubuntu20.04.1 [134 kB]
+Get:36 http://archive.ubuntu.com/ubuntu focal/main amd64 libbsd0 amd64 0.10.0-1 [45.4 kB]
+Get:37 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libglib2.0-data all 2.64.6-1~ubuntu20.04.9 [5836 B]
+Get:38 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 tzdata all 2025b-0ubuntu0.20.04.1 [300 kB]
+Get:39 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libicu66 amd64 66.1-2ubuntu2.1 [8515 kB]
+Get:40 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libnss-systemd amd64 245.4-4ubuntu3.24 [95.8 kB]
+Get:41 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libpam-systemd amd64 245.4-4ubuntu3.24 [186 kB]
+Get:42 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libxml2 amd64 2.9.10+dfsg-5ubuntu0.20.04.10 [640 kB]
+Get:43 http://archive.ubuntu.com/ubuntu focal/main amd64 lsb-release all 11.1.0ubuntu2 [10.6 kB]
+Get:44 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-dbus amd64 1.2.16-1build1 [94.0 kB]
+Get:45 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-gi amd64 3.36.0-1 [165 kB]
+Get:46 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 networkd-dispatcher all 2.1-2~ubuntu20.04.3 [15.5 kB]
+Get:47 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 python3-pkg-resources all 45.2.0-1ubuntu0.3 [130 kB]
+Get:48 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-six all 1.14.0-2 [12.1 kB]
+Get:49 http://archive.ubuntu.com/ubuntu focal/main amd64 shared-mime-info amd64 1.15-1 [430 kB]
+Get:50 http://archive.ubuntu.com/ubuntu focal/main amd64 ucf all 3.0038+nmu1 [51.6 kB]
+Get:51 http://archive.ubuntu.com/ubuntu focal/main amd64 xdg-user-dirs amd64 0.17-2ubuntu1 [48.3 kB]
+Get:52 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 krb5-locales all 1.17-6ubuntu4.11 [12.0 kB]
+Get:53 http://archive.ubuntu.com/ubuntu focal/main amd64 libcbor0.6 amd64 0.6.0-0ubuntu1 [21.1 kB]
+Get:54 http://archive.ubuntu.com/ubuntu focal/main amd64 libedit2 amd64 3.1-20191231-1 [87.0 kB]
+Get:55 http://archive.ubuntu.com/ubuntu focal/main amd64 libfido2-1 amd64 1.3.1-1ubuntu2 [47.9 kB]
+Get:56 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libkrb5support0 amd64 1.17-6ubuntu4.11 [31.5 kB]
+Get:57 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libk5crypto3 amd64 1.17-6ubuntu4.11 [80.3 kB]
+Get:58 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libkeyutils1 amd64 1.6-6ubuntu1.1 [10.3 kB]
+Get:59 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libkrb5-3 amd64 1.17-6ubuntu4.11 [330 kB]
+Get:60 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libgssapi-krb5-2 amd64 1.17-6ubuntu4.11 [121 kB]
+Get:61 http://archive.ubuntu.com/ubuntu focal/main amd64 libpsl5 amd64 0.21.0-1ubuntu1 [51.5 kB]
+Get:62 http://archive.ubuntu.com/ubuntu focal/main amd64 libxau6 amd64 1:1.0.9-0ubuntu1 [7488 B]
+Get:63 http://archive.ubuntu.com/ubuntu focal/main amd64 libxdmcp6 amd64 1:1.1.3-0ubuntu1 [10.6 kB]
+Get:64 http://archive.ubuntu.com/ubuntu focal/main amd64 libxcb1 amd64 1.14-2 [44.7 kB]
+Get:65 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libx11-data all 2:1.6.9-2ubuntu1.6 [114 kB]
+Get:66 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libx11-6 amd64 2:1.6.9-2ubuntu1.6 [577 kB]
+Get:67 http://archive.ubuntu.com/ubuntu focal/main amd64 libxext6 amd64 2:1.3.4-0ubuntu1 [29.1 kB]
+Get:68 http://archive.ubuntu.com/ubuntu focal/main amd64 libxmuu1 amd64 2:1.1.3-0ubuntu1 [9728 B]
+Get:69 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 openssh-client amd64 1:8.2p1-4ubuntu0.13 [670 kB]
+Get:70 http://archive.ubuntu.com/ubuntu focal/main amd64 publicsuffix all 20200303.0012-1 [111 kB]
+Get:71 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 wget amd64 1.20.3-1ubuntu2.1 [349 kB]
+Get:72 http://archive.ubuntu.com/ubuntu focal/main amd64 xauth amd64 1:1.1-0ubuntu1 [25.0 kB]
+Get:73 http://archive.ubuntu.com/ubuntu focal/main amd64 x11-common all 1:7.7+19ubuntu14 [22.3 kB]
+Get:74 http://archive.ubuntu.com/ubuntu focal/main amd64 libice6 amd64 2:1.0.10-0ubuntu1 [41.0 kB]
+Get:75 http://archive.ubuntu.com/ubuntu focal/main amd64 libpthread-stubs0-dev amd64 0.4-1 [5384 B]
+Get:76 http://archive.ubuntu.com/ubuntu focal/main amd64 libsm6 amd64 2:1.2.3-1 [16.1 kB]
+Get:77 http://archive.ubuntu.com/ubuntu focal/main amd64 libwrap0 amd64 7.6.q-30 [46.3 kB]
+Get:78 http://archive.ubuntu.com/ubuntu focal/main amd64 xorg-sgml-doctools all 1:1.11-1 [12.9 kB]
+Get:79 http://archive.ubuntu.com/ubuntu focal/main amd64 x11proto-dev all 2019.2-1ubuntu1 [594 kB]
+Get:80 http://archive.ubuntu.com/ubuntu focal/main amd64 x11proto-core-dev all 2019.2-1ubuntu1 [2620 B]
+Get:81 http://archive.ubuntu.com/ubuntu focal/main amd64 libxau-dev amd64 1:1.0.9-0ubuntu1 [9552 B]
+Get:82 http://archive.ubuntu.com/ubuntu focal/main amd64 libxdmcp-dev amd64 1:1.1.3-0ubuntu1 [25.3 kB]
+Get:83 http://archive.ubuntu.com/ubuntu focal/main amd64 xtrans-dev all 1.4.0-1 [68.9 kB]
+Get:84 http://archive.ubuntu.com/ubuntu focal/main amd64 libxcb1-dev amd64 1.14-2 [80.5 kB]
+Get:85 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libx11-dev amd64 2:1.6.9-2ubuntu1.6 [648 kB]
+Get:86 http://archive.ubuntu.com/ubuntu focal/main amd64 libxrender1 amd64 1:0.9.10-1 [18.7 kB]
+Get:87 http://archive.ubuntu.com/ubuntu focal/main amd64 libxrender-dev amd64 1:0.9.10-1 [24.9 kB]
+Get:88 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 ncurses-term all 6.2-0ubuntu2.1 [249 kB]
+Get:89 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 openssh-sftp-server amd64 1:8.2p1-4ubuntu0.13 [51.6 kB]
+Get:90 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 openssh-server amd64 1:8.2p1-4ubuntu0.13 [378 kB]
+Get:91 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-certifi all 2019.11.28-1 [149 kB]
+Get:92 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-chardet all 3.0.4-4build1 [80.4 kB]
+Get:93 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 python3-idna all 2.8-1ubuntu0.1 [36.2 kB]
+Get:94 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 python3-urllib3 all 1.25.8-2ubuntu0.4 [88.7 kB]
+Get:95 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 python3-requests all 2.22.0-2ubuntu1.1 [47.2 kB]
+Get:96 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-distro all 1.4.0-1 [14.6 kB]
+Get:97 http://archive.ubuntu.com/ubuntu focal/main amd64 ssh-import-id all 5.10-0ubuntu1 [10.0 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 28.6 MB in 5s (5252 kB/s)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 13744 files and directories currently installed.)
+Preparing to unpack .../libsystemd0_245.4-4ubuntu3.24_amd64.deb ...
+Unpacking libsystemd0:amd64 (245.4-4ubuntu3.24) over (245.4-4ubuntu3.22) ...
+Setting up libsystemd0:amd64 (245.4-4ubuntu3.24) ...
+Selecting previously unselected package libpython3.8-minimal:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 13744 files and directories currently installed.)
+Preparing to unpack .../libpython3.8-minimal_3.8.10-0ubuntu1~20.04.18_amd64.deb ...
+Unpacking libpython3.8-minimal:amd64 (3.8.10-0ubuntu1~20.04.18) ...
+Selecting previously unselected package libexpat1:amd64.
+Preparing to unpack .../libexpat1_2.2.9-1ubuntu0.8_amd64.deb ...
+Unpacking libexpat1:amd64 (2.2.9-1ubuntu0.8) ...
+Selecting previously unselected package python3.8-minimal.
+Preparing to unpack .../python3.8-minimal_3.8.10-0ubuntu1~20.04.18_amd64.deb ...
+Unpacking python3.8-minimal (3.8.10-0ubuntu1~20.04.18) ...
+Setting up libpython3.8-minimal:amd64 (3.8.10-0ubuntu1~20.04.18) ...
+Setting up libexpat1:amd64 (2.2.9-1ubuntu0.8) ...
+Setting up python3.8-minimal (3.8.10-0ubuntu1~20.04.18) ...
+Selecting previously unselected package python3-minimal.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 14035 files and directories currently installed.)
+Preparing to unpack .../0-python3-minimal_3.8.2-0ubuntu2_amd64.deb ...
+Unpacking python3-minimal (3.8.2-0ubuntu2) ...
+Selecting previously unselected package mime-support.
+Preparing to unpack .../1-mime-support_3.64ubuntu1_all.deb ...
+Unpacking mime-support (3.64ubuntu1) ...
+Selecting previously unselected package libmpdec2:amd64.
+Preparing to unpack .../2-libmpdec2_2.4.2-3_amd64.deb ...
+Unpacking libmpdec2:amd64 (2.4.2-3) ...
+Selecting previously unselected package libpython3.8-stdlib:amd64.
+Preparing to unpack .../3-libpython3.8-stdlib_3.8.10-0ubuntu1~20.04.18_amd64.deb ...
+Unpacking libpython3.8-stdlib:amd64 (3.8.10-0ubuntu1~20.04.18) ...
+Selecting previously unselected package python3.8.
+Preparing to unpack .../4-python3.8_3.8.10-0ubuntu1~20.04.18_amd64.deb ...
+Unpacking python3.8 (3.8.10-0ubuntu1~20.04.18) ...
+Selecting previously unselected package libpython3-stdlib:amd64.
+Preparing to unpack .../5-libpython3-stdlib_3.8.2-0ubuntu2_amd64.deb ...
+Unpacking libpython3-stdlib:amd64 (3.8.2-0ubuntu2) ...
+Setting up python3-minimal (3.8.2-0ubuntu2) ...
+Selecting previously unselected package python3.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 14436 files and directories currently installed.)
+Preparing to unpack .../00-python3_3.8.2-0ubuntu2_amd64.deb ...
+Unpacking python3 (3.8.2-0ubuntu2) ...
+Selecting previously unselected package libapparmor1:amd64.
+Preparing to unpack .../01-libapparmor1_2.13.3-7ubuntu5.4_amd64.deb ...
+Unpacking libapparmor1:amd64 (2.13.3-7ubuntu5.4) ...
+Selecting previously unselected package libcap2:amd64.
+Preparing to unpack .../02-libcap2_1%3a2.32-1ubuntu0.2_amd64.deb ...
+Unpacking libcap2:amd64 (1:2.32-1ubuntu0.2) ...
+Selecting previously unselected package libargon2-1:amd64.
+Preparing to unpack .../03-libargon2-1_0~20171227-0.2_amd64.deb ...
+Unpacking libargon2-1:amd64 (0~20171227-0.2) ...
+Selecting previously unselected package libdevmapper1.02.1:amd64.
+Preparing to unpack .../04-libdevmapper1.02.1_2%3a1.02.167-1ubuntu1_amd64.deb ...
+Unpacking libdevmapper1.02.1:amd64 (2:1.02.167-1ubuntu1) ...
+Selecting previously unselected package libjson-c4:amd64.
+Preparing to unpack .../05-libjson-c4_0.13.1+dfsg-7ubuntu0.3_amd64.deb ...
+Unpacking libjson-c4:amd64 (0.13.1+dfsg-7ubuntu0.3) ...
+Selecting previously unselected package libcryptsetup12:amd64.
+Preparing to unpack .../06-libcryptsetup12_2%3a2.2.2-3ubuntu2.5_amd64.deb ...
+Unpacking libcryptsetup12:amd64 (2:2.2.2-3ubuntu2.5) ...
+Selecting previously unselected package libip4tc2:amd64.
+Preparing to unpack .../07-libip4tc2_1.8.4-3ubuntu2.1_amd64.deb ...
+Unpacking libip4tc2:amd64 (1.8.4-3ubuntu2.1) ...
+Selecting previously unselected package libkmod2:amd64.
+Preparing to unpack .../08-libkmod2_27-1ubuntu2.1_amd64.deb ...
+Unpacking libkmod2:amd64 (27-1ubuntu2.1) ...
+Selecting previously unselected package systemd-timesyncd.
+Preparing to unpack .../09-systemd-timesyncd_245.4-4ubuntu3.24_amd64.deb ...
+Unpacking systemd-timesyncd (245.4-4ubuntu3.24) ...
+Selecting previously unselected package systemd.
+Preparing to unpack .../10-systemd_245.4-4ubuntu3.24_amd64.deb ...
+Unpacking systemd (245.4-4ubuntu3.24) ...
+Setting up libapparmor1:amd64 (2.13.3-7ubuntu5.4) ...
+Setting up libcap2:amd64 (1:2.32-1ubuntu0.2) ...
+Setting up libargon2-1:amd64 (0~20171227-0.2) ...
+Setting up libdevmapper1.02.1:amd64 (2:1.02.167-1ubuntu1) ...
+Setting up libjson-c4:amd64 (0.13.1+dfsg-7ubuntu0.3) ...
+Setting up libcryptsetup12:amd64 (2:2.2.2-3ubuntu2.5) ...
+Setting up libip4tc2:amd64 (1.8.4-3ubuntu2.1) ...
+Setting up libkmod2:amd64 (27-1ubuntu2.1) ...
+Setting up systemd-timesyncd (245.4-4ubuntu3.24) ...
+Created symlink /etc/systemd/system/dbus-org.freedesktop.timesync1.service → /lib/systemd/system/systemd-timesyncd.service.
+Created symlink /etc/systemd/system/sysinit.target.wants/systemd-timesyncd.service → /lib/systemd/system/systemd-timesyncd.service.
+Setting up systemd (245.4-4ubuntu3.24) ...
+Created symlink /etc/systemd/system/getty.target.wants/getty@tty1.service → /lib/systemd/system/getty@.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/remote-fs.target → /lib/systemd/system/remote-fs.target.
+Created symlink /etc/systemd/system/dbus-org.freedesktop.resolve1.service → /lib/systemd/system/systemd-resolved.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/systemd-resolved.service → /lib/systemd/system/systemd-resolved.service.
+ln: failed to create symbolic link '/etc/resolv.conf': Device or resource busy
+Created symlink /etc/systemd/system/multi-user.target.wants/ondemand.service → /lib/systemd/system/ondemand.service.
+Created symlink /etc/systemd/system/sysinit.target.wants/systemd-pstore.service → /lib/systemd/system/systemd-pstore.service.
+Initializing machine ID from random generator.
+Selecting previously unselected package systemd-sysv.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 15269 files and directories currently installed.)
+Preparing to unpack .../00-systemd-sysv_245.4-4ubuntu3.24_amd64.deb ...
+Unpacking systemd-sysv (245.4-4ubuntu3.24) ...
+Selecting previously unselected package libpopt0:amd64.
+Preparing to unpack .../01-libpopt0_1.16-14_amd64.deb ...
+Unpacking libpopt0:amd64 (1.16-14) ...
+Selecting previously unselected package rsync.
+Preparing to unpack .../02-rsync_3.1.3-8ubuntu0.9_amd64.deb ...
+Unpacking rsync (3.1.3-8ubuntu0.9) ...
+Preparing to unpack .../03-procps_2%3a3.3.16-1ubuntu2.4_amd64.deb ...
+Unpacking procps (2:3.3.16-1ubuntu2.4) over (2:3.3.16-1ubuntu2.3) ...
+Selecting previously unselected package libdbus-1-3:amd64.
+Preparing to unpack .../04-libdbus-1-3_1.12.16-2ubuntu2.3_amd64.deb ...
+Unpacking libdbus-1-3:amd64 (1.12.16-2ubuntu2.3) ...
+Selecting previously unselected package dbus.
+Preparing to unpack .../05-dbus_1.12.16-2ubuntu2.3_amd64.deb ...
+Unpacking dbus (1.12.16-2ubuntu2.3) ...
+Selecting previously unselected package distro-info-data.
+Preparing to unpack .../06-distro-info-data_0.43ubuntu1.19_all.deb ...
+Unpacking distro-info-data (0.43ubuntu1.19) ...
+Selecting previously unselected package dmsetup.
+Preparing to unpack .../07-dmsetup_2%3a1.02.167-1ubuntu1_amd64.deb ...
+Unpacking dmsetup (2:1.02.167-1ubuntu1) ...
+Selecting previously unselected package libmagic-mgc.
+Preparing to unpack .../08-libmagic-mgc_1%3a5.38-4_amd64.deb ...
+Unpacking libmagic-mgc (1:5.38-4) ...
+Selecting previously unselected package libmagic1:amd64.
+Preparing to unpack .../09-libmagic1_1%3a5.38-4_amd64.deb ...
+Unpacking libmagic1:amd64 (1:5.38-4) ...
+Selecting previously unselected package file.
+Preparing to unpack .../10-file_1%3a5.38-4_amd64.deb ...
+Unpacking file (1:5.38-4) ...
+Selecting previously unselected package libglib2.0-0:amd64.
+Preparing to unpack .../11-libglib2.0-0_2.64.6-1~ubuntu20.04.9_amd64.deb ...
+Unpacking libglib2.0-0:amd64 (2.64.6-1~ubuntu20.04.9) ...
+Selecting previously unselected package libgirepository-1.0-1:amd64.
+Preparing to unpack .../12-libgirepository-1.0-1_1.64.1-1~ubuntu20.04.1_amd64.deb ...
+Unpacking libgirepository-1.0-1:amd64 (1.64.1-1~ubuntu20.04.1) ...
+Selecting previously unselected package gir1.2-glib-2.0:amd64.
+Preparing to unpack .../13-gir1.2-glib-2.0_1.64.1-1~ubuntu20.04.1_amd64.deb ...
+Unpacking gir1.2-glib-2.0:amd64 (1.64.1-1~ubuntu20.04.1) ...
+Selecting previously unselected package libbsd0:amd64.
+Preparing to unpack .../14-libbsd0_0.10.0-1_amd64.deb ...
+Unpacking libbsd0:amd64 (0.10.0-1) ...
+Selecting previously unselected package libglib2.0-data.
+Preparing to unpack .../15-libglib2.0-data_2.64.6-1~ubuntu20.04.9_all.deb ...
+Unpacking libglib2.0-data (2.64.6-1~ubuntu20.04.9) ...
+Selecting previously unselected package tzdata.
+Preparing to unpack .../16-tzdata_2025b-0ubuntu0.20.04.1_all.deb ...
+Unpacking tzdata (2025b-0ubuntu0.20.04.1) ...
+Selecting previously unselected package libicu66:amd64.
+Preparing to unpack .../17-libicu66_66.1-2ubuntu2.1_amd64.deb ...
+Unpacking libicu66:amd64 (66.1-2ubuntu2.1) ...
+Selecting previously unselected package libnss-systemd:amd64.
+Preparing to unpack .../18-libnss-systemd_245.4-4ubuntu3.24_amd64.deb ...
+Unpacking libnss-systemd:amd64 (245.4-4ubuntu3.24) ...
+Selecting previously unselected package libpam-systemd:amd64.
+Preparing to unpack .../19-libpam-systemd_245.4-4ubuntu3.24_amd64.deb ...
+Unpacking libpam-systemd:amd64 (245.4-4ubuntu3.24) ...
+Selecting previously unselected package libxml2:amd64.
+Preparing to unpack .../20-libxml2_2.9.10+dfsg-5ubuntu0.20.04.10_amd64.deb ...
+Unpacking libxml2:amd64 (2.9.10+dfsg-5ubuntu0.20.04.10) ...
+Selecting previously unselected package lsb-release.
+Preparing to unpack .../21-lsb-release_11.1.0ubuntu2_all.deb ...
+Unpacking lsb-release (11.1.0ubuntu2) ...
+Selecting previously unselected package python3-dbus.
+Preparing to unpack .../22-python3-dbus_1.2.16-1build1_amd64.deb ...
+Unpacking python3-dbus (1.2.16-1build1) ...
+Selecting previously unselected package python3-gi.
+Preparing to unpack .../23-python3-gi_3.36.0-1_amd64.deb ...
+Unpacking python3-gi (3.36.0-1) ...
+Selecting previously unselected package networkd-dispatcher.
+Preparing to unpack .../24-networkd-dispatcher_2.1-2~ubuntu20.04.3_all.deb ...
+Unpacking networkd-dispatcher (2.1-2~ubuntu20.04.3) ...
+Selecting previously unselected package python3-pkg-resources.
+Preparing to unpack .../25-python3-pkg-resources_45.2.0-1ubuntu0.3_all.deb ...
+Unpacking python3-pkg-resources (45.2.0-1ubuntu0.3) ...
+Selecting previously unselected package python3-six.
+Preparing to unpack .../26-python3-six_1.14.0-2_all.deb ...
+Unpacking python3-six (1.14.0-2) ...
+Selecting previously unselected package shared-mime-info.
+Preparing to unpack .../27-shared-mime-info_1.15-1_amd64.deb ...
+Unpacking shared-mime-info (1.15-1) ...
+Selecting previously unselected package ucf.
+Preparing to unpack .../28-ucf_3.0038+nmu1_all.deb ...
+Moving old data out of the way
+Unpacking ucf (3.0038+nmu1) ...
+Selecting previously unselected package xdg-user-dirs.
+Preparing to unpack .../29-xdg-user-dirs_0.17-2ubuntu1_amd64.deb ...
+Unpacking xdg-user-dirs (0.17-2ubuntu1) ...
+Selecting previously unselected package krb5-locales.
+Preparing to unpack .../30-krb5-locales_1.17-6ubuntu4.11_all.deb ...
+Unpacking krb5-locales (1.17-6ubuntu4.11) ...
+Selecting previously unselected package libcbor0.6:amd64.
+Preparing to unpack .../31-libcbor0.6_0.6.0-0ubuntu1_amd64.deb ...
+Unpacking libcbor0.6:amd64 (0.6.0-0ubuntu1) ...
+Selecting previously unselected package libedit2:amd64.
+Preparing to unpack .../32-libedit2_3.1-20191231-1_amd64.deb ...
+Unpacking libedit2:amd64 (3.1-20191231-1) ...
+Selecting previously unselected package libfido2-1:amd64.
+Preparing to unpack .../33-libfido2-1_1.3.1-1ubuntu2_amd64.deb ...
+Unpacking libfido2-1:amd64 (1.3.1-1ubuntu2) ...
+Selecting previously unselected package libkrb5support0:amd64.
+Preparing to unpack .../34-libkrb5support0_1.17-6ubuntu4.11_amd64.deb ...
+Unpacking libkrb5support0:amd64 (1.17-6ubuntu4.11) ...
+Selecting previously unselected package libk5crypto3:amd64.
+Preparing to unpack .../35-libk5crypto3_1.17-6ubuntu4.11_amd64.deb ...
+Unpacking libk5crypto3:amd64 (1.17-6ubuntu4.11) ...
+Selecting previously unselected package libkeyutils1:amd64.
+Preparing to unpack .../36-libkeyutils1_1.6-6ubuntu1.1_amd64.deb ...
+Unpacking libkeyutils1:amd64 (1.6-6ubuntu1.1) ...
+Selecting previously unselected package libkrb5-3:amd64.
+Preparing to unpack .../37-libkrb5-3_1.17-6ubuntu4.11_amd64.deb ...
+Unpacking libkrb5-3:amd64 (1.17-6ubuntu4.11) ...
+Selecting previously unselected package libgssapi-krb5-2:amd64.
+Preparing to unpack .../38-libgssapi-krb5-2_1.17-6ubuntu4.11_amd64.deb ...
+Unpacking libgssapi-krb5-2:amd64 (1.17-6ubuntu4.11) ...
+Selecting previously unselected package libpsl5:amd64.
+Preparing to unpack .../39-libpsl5_0.21.0-1ubuntu1_amd64.deb ...
+Unpacking libpsl5:amd64 (0.21.0-1ubuntu1) ...
+Selecting previously unselected package libxau6:amd64.
+Preparing to unpack .../40-libxau6_1%3a1.0.9-0ubuntu1_amd64.deb ...
+Unpacking libxau6:amd64 (1:1.0.9-0ubuntu1) ...
+Selecting previously unselected package libxdmcp6:amd64.
+Preparing to unpack .../41-libxdmcp6_1%3a1.1.3-0ubuntu1_amd64.deb ...
+Unpacking libxdmcp6:amd64 (1:1.1.3-0ubuntu1) ...
+Selecting previously unselected package libxcb1:amd64.
+Preparing to unpack .../42-libxcb1_1.14-2_amd64.deb ...
+Unpacking libxcb1:amd64 (1.14-2) ...
+Selecting previously unselected package libx11-data.
+Preparing to unpack .../43-libx11-data_2%3a1.6.9-2ubuntu1.6_all.deb ...
+Unpacking libx11-data (2:1.6.9-2ubuntu1.6) ...
+Selecting previously unselected package libx11-6:amd64.
+Preparing to unpack .../44-libx11-6_2%3a1.6.9-2ubuntu1.6_amd64.deb ...
+Unpacking libx11-6:amd64 (2:1.6.9-2ubuntu1.6) ...
+Selecting previously unselected package libxext6:amd64.
+Preparing to unpack .../45-libxext6_2%3a1.3.4-0ubuntu1_amd64.deb ...
+Unpacking libxext6:amd64 (2:1.3.4-0ubuntu1) ...
+Selecting previously unselected package libxmuu1:amd64.
+Preparing to unpack .../46-libxmuu1_2%3a1.1.3-0ubuntu1_amd64.deb ...
+Unpacking libxmuu1:amd64 (2:1.1.3-0ubuntu1) ...
+Selecting previously unselected package openssh-client.
+Preparing to unpack .../47-openssh-client_1%3a8.2p1-4ubuntu0.13_amd64.deb ...
+Unpacking openssh-client (1:8.2p1-4ubuntu0.13) ...
+Selecting previously unselected package publicsuffix.
+Preparing to unpack .../48-publicsuffix_20200303.0012-1_all.deb ...
+Unpacking publicsuffix (20200303.0012-1) ...
+Selecting previously unselected package wget.
+Preparing to unpack .../49-wget_1.20.3-1ubuntu2.1_amd64.deb ...
+Unpacking wget (1.20.3-1ubuntu2.1) ...
+Selecting previously unselected package xauth.
+Preparing to unpack .../50-xauth_1%3a1.1-0ubuntu1_amd64.deb ...
+Unpacking xauth (1:1.1-0ubuntu1) ...
+Selecting previously unselected package x11-common.
+Preparing to unpack .../51-x11-common_1%3a7.7+19ubuntu14_all.deb ...
+dpkg-query: no packages found matching nux-tools
+Unpacking x11-common (1:7.7+19ubuntu14) ...
+Selecting previously unselected package libice6:amd64.
+Preparing to unpack .../52-libice6_2%3a1.0.10-0ubuntu1_amd64.deb ...
+Unpacking libice6:amd64 (2:1.0.10-0ubuntu1) ...
+Selecting previously unselected package libpthread-stubs0-dev:amd64.
+Preparing to unpack .../53-libpthread-stubs0-dev_0.4-1_amd64.deb ...
+Unpacking libpthread-stubs0-dev:amd64 (0.4-1) ...
+Selecting previously unselected package libsm6:amd64.
+Preparing to unpack .../54-libsm6_2%3a1.2.3-1_amd64.deb ...
+Unpacking libsm6:amd64 (2:1.2.3-1) ...
+Selecting previously unselected package libwrap0:amd64.
+Preparing to unpack .../55-libwrap0_7.6.q-30_amd64.deb ...
+Unpacking libwrap0:amd64 (7.6.q-30) ...
+Selecting previously unselected package xorg-sgml-doctools.
+Preparing to unpack .../56-xorg-sgml-doctools_1%3a1.11-1_all.deb ...
+Unpacking xorg-sgml-doctools (1:1.11-1) ...
+Selecting previously unselected package x11proto-dev.
+Preparing to unpack .../57-x11proto-dev_2019.2-1ubuntu1_all.deb ...
+Unpacking x11proto-dev (2019.2-1ubuntu1) ...
+Selecting previously unselected package x11proto-core-dev.
+Preparing to unpack .../58-x11proto-core-dev_2019.2-1ubuntu1_all.deb ...
+Unpacking x11proto-core-dev (2019.2-1ubuntu1) ...
+Selecting previously unselected package libxau-dev:amd64.
+Preparing to unpack .../59-libxau-dev_1%3a1.0.9-0ubuntu1_amd64.deb ...
+Unpacking libxau-dev:amd64 (1:1.0.9-0ubuntu1) ...
+Selecting previously unselected package libxdmcp-dev:amd64.
+Preparing to unpack .../60-libxdmcp-dev_1%3a1.1.3-0ubuntu1_amd64.deb ...
+Unpacking libxdmcp-dev:amd64 (1:1.1.3-0ubuntu1) ...
+Selecting previously unselected package xtrans-dev.
+Preparing to unpack .../61-xtrans-dev_1.4.0-1_all.deb ...
+Unpacking xtrans-dev (1.4.0-1) ...
+Selecting previously unselected package libxcb1-dev:amd64.
+Preparing to unpack .../62-libxcb1-dev_1.14-2_amd64.deb ...
+Unpacking libxcb1-dev:amd64 (1.14-2) ...
+Selecting previously unselected package libx11-dev:amd64.
+Preparing to unpack .../63-libx11-dev_2%3a1.6.9-2ubuntu1.6_amd64.deb ...
+Unpacking libx11-dev:amd64 (2:1.6.9-2ubuntu1.6) ...
+Selecting previously unselected package libxrender1:amd64.
+Preparing to unpack .../64-libxrender1_1%3a0.9.10-1_amd64.deb ...
+Unpacking libxrender1:amd64 (1:0.9.10-1) ...
+Selecting previously unselected package libxrender-dev:amd64.
+Preparing to unpack .../65-libxrender-dev_1%3a0.9.10-1_amd64.deb ...
+Unpacking libxrender-dev:amd64 (1:0.9.10-1) ...
+Selecting previously unselected package ncurses-term.
+Preparing to unpack .../66-ncurses-term_6.2-0ubuntu2.1_all.deb ...
+Unpacking ncurses-term (6.2-0ubuntu2.1) ...
+Selecting previously unselected package openssh-sftp-server.
+Preparing to unpack .../67-openssh-sftp-server_1%3a8.2p1-4ubuntu0.13_amd64.deb ...
+Unpacking openssh-sftp-server (1:8.2p1-4ubuntu0.13) ...
+Selecting previously unselected package openssh-server.
+Preparing to unpack .../68-openssh-server_1%3a8.2p1-4ubuntu0.13_amd64.deb ...
+Unpacking openssh-server (1:8.2p1-4ubuntu0.13) ...
+Selecting previously unselected package python3-certifi.
+Preparing to unpack .../69-python3-certifi_2019.11.28-1_all.deb ...
+Unpacking python3-certifi (2019.11.28-1) ...
+Selecting previously unselected package python3-chardet.
+Preparing to unpack .../70-python3-chardet_3.0.4-4build1_all.deb ...
+Unpacking python3-chardet (3.0.4-4build1) ...
+Selecting previously unselected package python3-idna.
+Preparing to unpack .../71-python3-idna_2.8-1ubuntu0.1_all.deb ...
+Unpacking python3-idna (2.8-1ubuntu0.1) ...
+Selecting previously unselected package python3-urllib3.
+Preparing to unpack .../72-python3-urllib3_1.25.8-2ubuntu0.4_all.deb ...
+Unpacking python3-urllib3 (1.25.8-2ubuntu0.4) ...
+Selecting previously unselected package python3-requests.
+Preparing to unpack .../73-python3-requests_2.22.0-2ubuntu1.1_all.deb ...
+Unpacking python3-requests (2.22.0-2ubuntu1.1) ...
+Selecting previously unselected package python3-distro.
+Preparing to unpack .../74-python3-distro_1.4.0-1_all.deb ...
+Unpacking python3-distro (1.4.0-1) ...
+Selecting previously unselected package ssh-import-id.
+Preparing to unpack .../75-ssh-import-id_5.10-0ubuntu1_all.deb ...
+Unpacking ssh-import-id (5.10-0ubuntu1) ...
+Setting up systemd-sysv (245.4-4ubuntu3.24) ...
+Setting up libxau6:amd64 (1:1.0.9-0ubuntu1) ...
+Setting up libkeyutils1:amd64 (1.6-6ubuntu1.1) ...
+Setting up libpsl5:amd64 (0.21.0-1ubuntu1) ...
+Setting up mime-support (3.64ubuntu1) ...
+Setting up wget (1.20.3-1ubuntu2.1) ...
+Setting up xdg-user-dirs (0.17-2ubuntu1) ...
+Setting up libmagic-mgc (1:5.38-4) ...
+Setting up libglib2.0-0:amd64 (2.64.6-1~ubuntu20.04.9) ...
+No schema files found: doing nothing.
+Setting up distro-info-data (0.43ubuntu1.19) ...
+Setting up x11-common (1:7.7+19ubuntu14) ...
+update-rc.d: warning: start and stop actions are no longer supported; falling back to defaults
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up libmagic1:amd64 (1:5.38-4) ...
+Setting up libnss-systemd:amd64 (245.4-4ubuntu3.24) ...
+First installation detected...
+Checking NSS setup...
+Setting up krb5-locales (1.17-6ubuntu4.11) ...
+Setting up file (1:5.38-4) ...
+Setting up libcbor0.6:amd64 (0.6.0-0ubuntu1) ...
+Setting up libpthread-stubs0-dev:amd64 (0.4-1) ...
+Setting up libkrb5support0:amd64 (1.17-6ubuntu4.11) ...
+Setting up tzdata (2025b-0ubuntu0.20.04.1) ...
+
+Current default time zone: 'Etc/UTC'
+Local time is now:      Wed Nov 19 03:17:39 UTC 2025.
+Universal Time is now:  Wed Nov 19 03:17:39 UTC 2025.
+Run 'dpkg-reconfigure tzdata' if you wish to change it.
+
+Setting up xtrans-dev (1.4.0-1) ...
+Setting up libglib2.0-data (2.64.6-1~ubuntu20.04.9) ...
+Setting up libwrap0:amd64 (7.6.q-30) ...
+Setting up libx11-data (2:1.6.9-2ubuntu1.6) ...
+Setting up libdbus-1-3:amd64 (1.12.16-2ubuntu2.3) ...
+Setting up dbus (1.12.16-2ubuntu2.3) ...
+Setting up ucf (3.0038+nmu1) ...
+Setting up libk5crypto3:amd64 (1.17-6ubuntu4.11) ...
+Setting up dmsetup (2:1.02.167-1ubuntu1) ...
+Setting up procps (2:3.3.16-1ubuntu2.4) ...
+Setting up libpam-systemd:amd64 (245.4-4ubuntu3.24) ...
+Setting up libgirepository-1.0-1:amd64 (1.64.1-1~ubuntu20.04.1) ...
+Setting up xorg-sgml-doctools (1:1.11-1) ...
+Setting up libkrb5-3:amd64 (1.17-6ubuntu4.11) ...
+Setting up libmpdec2:amd64 (2.4.2-3) ...
+Setting up libpython3.8-stdlib:amd64 (3.8.10-0ubuntu1~20.04.18) ...
+Setting up libfido2-1:amd64 (1.3.1-1ubuntu2) ...
+Setting up python3.8 (3.8.10-0ubuntu1~20.04.18) ...
+Setting up libbsd0:amd64 (0.10.0-1) ...
+Setting up publicsuffix (20200303.0012-1) ...
+Setting up libpython3-stdlib:amd64 (3.8.2-0ubuntu2) ...
+Setting up libpopt0:amd64 (1.16-14) ...
+Setting up ncurses-term (6.2-0ubuntu2.1) ...
+Setting up x11proto-dev (2019.2-1ubuntu1) ...
+Setting up libice6:amd64 (2:1.0.10-0ubuntu1) ...
+Setting up libxdmcp6:amd64 (1:1.1.3-0ubuntu1) ...
+Setting up libxcb1:amd64 (1.14-2) ...
+Setting up libxau-dev:amd64 (1:1.0.9-0ubuntu1) ...
+Setting up libicu66:amd64 (66.1-2ubuntu2.1) ...
+Setting up libedit2:amd64 (3.1-20191231-1) ...
+Setting up python3 (3.8.2-0ubuntu2) ...
+Setting up python3-six (1.14.0-2) ...
+Setting up libxdmcp-dev:amd64 (1:1.1.3-0ubuntu1) ...
+Setting up python3-certifi (2019.11.28-1) ...
+Setting up x11proto-core-dev (2019.2-1ubuntu1) ...
+Setting up libgssapi-krb5-2:amd64 (1.17-6ubuntu4.11) ...
+Setting up python3-idna (2.8-1ubuntu0.1) ...
+Setting up gir1.2-glib-2.0:amd64 (1.64.1-1~ubuntu20.04.1) ...
+Setting up python3-urllib3 (1.25.8-2ubuntu0.4) ...
+Setting up libx11-6:amd64 (2:1.6.9-2ubuntu1.6) ...
+Setting up lsb-release (11.1.0ubuntu2) ...
+Setting up libsm6:amd64 (2:1.2.3-1) ...
+Setting up libxml2:amd64 (2.9.10+dfsg-5ubuntu0.20.04.10) ...
+Setting up libxmuu1:amd64 (2:1.1.3-0ubuntu1) ...
+Setting up rsync (3.1.3-8ubuntu0.9) ...
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Created symlink /etc/systemd/system/multi-user.target.wants/rsync.service → /lib/systemd/system/rsync.service.
+Setting up python3-pkg-resources (45.2.0-1ubuntu0.3) ...
+Setting up python3-dbus (1.2.16-1build1) ...
+Setting up libxcb1-dev:amd64 (1.14-2) ...
+Setting up python3-distro (1.4.0-1) ...
+Setting up libxrender1:amd64 (1:0.9.10-1) ...
+Setting up openssh-client (1:8.2p1-4ubuntu0.13) ...
+Setting up libx11-dev:amd64 (2:1.6.9-2ubuntu1.6) ...
+Setting up libxext6:amd64 (2:1.3.4-0ubuntu1) ...
+Setting up python3-chardet (3.0.4-4build1) ...
+Setting up python3-gi (3.36.0-1) ...
+Setting up shared-mime-info (1.15-1) ...
+Setting up python3-requests (2.22.0-2ubuntu1.1) ...
+Setting up xauth (1:1.1-0ubuntu1) ...
+Setting up libxrender-dev:amd64 (1:0.9.10-1) ...
+Setting up networkd-dispatcher (2.1-2~ubuntu20.04.3) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/networkd-dispatcher.service → /lib/systemd/system/networkd-dispatcher.service.
+Setting up openssh-sftp-server (1:8.2p1-4ubuntu0.13) ...
+Setting up openssh-server (1:8.2p1-4ubuntu0.13) ...
+
+Creating config file /etc/ssh/sshd_config with new version
+Creating SSH2 RSA key; this may take some time ...
+3072 SHA256:EJZGzHLlcouOPgWjTFakHKeLMdW/eQqIUBwu0s/6CUM root@f945373f3552 (RSA)
+Creating SSH2 ECDSA key; this may take some time ...
+256 SHA256:bkADKrR1fLTOYF4FLwiU27S/zyM7MH9yoh0GLxlTVuQ root@f945373f3552 (ECDSA)
+Creating SSH2 ED25519 key; this may take some time ...
+256 SHA256:a9jaQ3m5t9kSRk56rCAbRn8AV+kgwu2FH4AU5hemPm8 root@f945373f3552 (ED25519)
+Created symlink /etc/systemd/system/sshd.service → /lib/systemd/system/ssh.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/ssh.service → /lib/systemd/system/ssh.service.
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up ssh-import-id (5.10-0ubuntu1) ...
+Attempting to convert /etc/ssh/ssh_import_id
+Processing triggers for systemd (245.4-4ubuntu3.24) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.12) ...
+ ---> 179b7340ac4f
+Step 10/28 : RUN apt-get install -y software-properties-common &&    add-apt-repository -y ppa:deadsnakes/ppa &&    apt-get install -y python3.9 python3-pip python3.9-distutils curl
+ ---> Running in e258bb61491a
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  dbus-user-session dconf-gsettings-backend dconf-service
+  gir1.2-packagekitglib-1.0 glib-networking glib-networking-common
+  glib-networking-services gsettings-desktop-schemas iso-codes libappstream4
+  libbrotli1 libcap2-bin libdconf1 libelf1 libglib2.0-bin libgstreamer1.0-0
+  liblmdb0 libpackagekit-glib2-18 libpam-cap libpolkit-agent-1-0
+  libpolkit-gobject-1-0 libproxy1v5 libsoup2.4-1 libstemmer0d libyaml-0-2
+  packagekit packagekit-tools policykit-1 python-apt-common python3-apt
+  python3-distro-info python3-requests-unixsocket python3-software-properties
+  unattended-upgrades
+Suggested packages:
+  isoquery gstreamer1.0-tools appstream python3-apt-dbg python-apt-doc
+  bsd-mailx default-mta | mail-transport-agent needrestart powermgmt-base
+The following NEW packages will be installed:
+  dbus-user-session dconf-gsettings-backend dconf-service
+  gir1.2-packagekitglib-1.0 glib-networking glib-networking-common
+  glib-networking-services gsettings-desktop-schemas iso-codes libappstream4
+  libbrotli1 libcap2-bin libdconf1 libelf1 libglib2.0-bin libgstreamer1.0-0
+  liblmdb0 libpackagekit-glib2-18 libpam-cap libpolkit-agent-1-0
+  libpolkit-gobject-1-0 libproxy1v5 libsoup2.4-1 libstemmer0d libyaml-0-2
+  packagekit packagekit-tools policykit-1 python-apt-common python3-apt
+  python3-distro-info python3-requests-unixsocket python3-software-properties
+  software-properties-common unattended-upgrades
+0 upgraded, 35 newly installed, 0 to remove and 83 not upgraded.
+Need to get 5774 kB of archives.
+After this operation, 33.6 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libcap2-bin amd64 1:2.32-1ubuntu0.2 [26.2 kB]
+Get:2 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libelf1 amd64 0.176-1.1ubuntu0.1 [44.2 kB]
+Get:3 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libpam-cap amd64 1:2.32-1ubuntu0.2 [8376 B]
+Get:4 http://archive.ubuntu.com/ubuntu focal/main amd64 libyaml-0-2 amd64 0.2.2-1 [48.9 kB]
+Get:5 http://archive.ubuntu.com/ubuntu focal/main amd64 iso-codes all 4.4-1 [2695 kB]
+Get:6 http://archive.ubuntu.com/ubuntu focal/main amd64 liblmdb0 amd64 0.9.24-1 [44.6 kB]
+Get:7 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libpolkit-gobject-1-0 amd64 0.105-26ubuntu1.3 [39.2 kB]
+Get:8 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 python-apt-common all 2.0.1ubuntu0.20.04.1 [16.5 kB]
+Get:9 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 python3-apt amd64 2.0.1ubuntu0.20.04.1 [154 kB]
+Get:10 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 python3-distro-info all 0.23ubuntu1.1 [5944 B]
+Get:11 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 dbus-user-session amd64 1.12.16-2ubuntu2.3 [9424 B]
+Get:12 http://archive.ubuntu.com/ubuntu focal/main amd64 libdconf1 amd64 0.36.0-1 [37.4 kB]
+Get:13 http://archive.ubuntu.com/ubuntu focal/main amd64 dconf-service amd64 0.36.0-1 [29.8 kB]
+Get:14 http://archive.ubuntu.com/ubuntu focal/main amd64 dconf-gsettings-backend amd64 0.36.0-1 [22.5 kB]
+Get:15 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libpackagekit-glib2-18 amd64 1.1.13-2ubuntu1.1 [104 kB]
+Get:16 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gir1.2-packagekitglib-1.0 amd64 1.1.13-2ubuntu1.1 [21.6 kB]
+Get:17 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libproxy1v5 amd64 0.4.15-10ubuntu1.2 [49.1 kB]
+Get:18 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 glib-networking-common all 2.64.2-1ubuntu0.1 [5040 B]
+Get:19 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 glib-networking-services amd64 2.64.2-1ubuntu0.1 [10.6 kB]
+Get:20 http://archive.ubuntu.com/ubuntu focal/main amd64 gsettings-desktop-schemas all 3.36.0-1ubuntu1 [29.0 kB]
+Get:21 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 glib-networking amd64 2.64.2-1ubuntu0.1 [58.2 kB]
+Get:22 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libbrotli1 amd64 1.0.7-6ubuntu0.1 [267 kB]
+Get:23 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libsoup2.4-1 amd64 2.70.0-1ubuntu0.5 [263 kB]
+Get:24 http://archive.ubuntu.com/ubuntu focal/main amd64 libstemmer0d amd64 0+svn585-2 [61.7 kB]
+Get:25 http://archive.ubuntu.com/ubuntu focal/main amd64 libappstream4 amd64 0.12.10-2 [129 kB]
+Get:26 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libglib2.0-bin amd64 2.64.6-1~ubuntu20.04.9 [72.9 kB]
+Get:27 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libgstreamer1.0-0 amd64 1.16.3-0ubuntu1.2 [894 kB]
+Get:28 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libpolkit-agent-1-0 amd64 0.105-26ubuntu1.3 [15.2 kB]
+Get:29 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 policykit-1 amd64 0.105-26ubuntu1.3 [84.1 kB]
+Get:30 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 packagekit amd64 1.1.13-2ubuntu1.1 [408 kB]
+Get:31 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 packagekit-tools amd64 1.1.13-2ubuntu1.1 [32.8 kB]
+Get:32 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-requests-unixsocket all 0.2.0-2 [7272 B]
+Get:33 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 python3-software-properties all 0.99.9.12 [21.7 kB]
+Get:34 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 software-properties-common all 0.99.9.12 [10.4 kB]
+Get:35 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 unattended-upgrades all 2.3ubuntu0.3 [48.5 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 5774 kB in 2s (2556 kB/s)
+Selecting previously unselected package libcap2-bin.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 21712 files and directories currently installed.)
+Preparing to unpack .../00-libcap2-bin_1%3a2.32-1ubuntu0.2_amd64.deb ...
+Unpacking libcap2-bin (1:2.32-1ubuntu0.2) ...
+Selecting previously unselected package libelf1:amd64.
+Preparing to unpack .../01-libelf1_0.176-1.1ubuntu0.1_amd64.deb ...
+Unpacking libelf1:amd64 (0.176-1.1ubuntu0.1) ...
+Selecting previously unselected package libpam-cap:amd64.
+Preparing to unpack .../02-libpam-cap_1%3a2.32-1ubuntu0.2_amd64.deb ...
+Unpacking libpam-cap:amd64 (1:2.32-1ubuntu0.2) ...
+Selecting previously unselected package libyaml-0-2:amd64.
+Preparing to unpack .../03-libyaml-0-2_0.2.2-1_amd64.deb ...
+Unpacking libyaml-0-2:amd64 (0.2.2-1) ...
+Selecting previously unselected package iso-codes.
+Preparing to unpack .../04-iso-codes_4.4-1_all.deb ...
+Unpacking iso-codes (4.4-1) ...
+Selecting previously unselected package liblmdb0:amd64.
+Preparing to unpack .../05-liblmdb0_0.9.24-1_amd64.deb ...
+Unpacking liblmdb0:amd64 (0.9.24-1) ...
+Selecting previously unselected package libpolkit-gobject-1-0:amd64.
+Preparing to unpack .../06-libpolkit-gobject-1-0_0.105-26ubuntu1.3_amd64.deb ...
+Unpacking libpolkit-gobject-1-0:amd64 (0.105-26ubuntu1.3) ...
+Selecting previously unselected package python-apt-common.
+Preparing to unpack .../07-python-apt-common_2.0.1ubuntu0.20.04.1_all.deb ...
+Unpacking python-apt-common (2.0.1ubuntu0.20.04.1) ...
+Selecting previously unselected package python3-apt.
+Preparing to unpack .../08-python3-apt_2.0.1ubuntu0.20.04.1_amd64.deb ...
+Unpacking python3-apt (2.0.1ubuntu0.20.04.1) ...
+Selecting previously unselected package python3-distro-info.
+Preparing to unpack .../09-python3-distro-info_0.23ubuntu1.1_all.deb ...
+Unpacking python3-distro-info (0.23ubuntu1.1) ...
+Selecting previously unselected package dbus-user-session.
+Preparing to unpack .../10-dbus-user-session_1.12.16-2ubuntu2.3_amd64.deb ...
+Unpacking dbus-user-session (1.12.16-2ubuntu2.3) ...
+Selecting previously unselected package libdconf1:amd64.
+Preparing to unpack .../11-libdconf1_0.36.0-1_amd64.deb ...
+Unpacking libdconf1:amd64 (0.36.0-1) ...
+Selecting previously unselected package dconf-service.
+Preparing to unpack .../12-dconf-service_0.36.0-1_amd64.deb ...
+Unpacking dconf-service (0.36.0-1) ...
+Selecting previously unselected package dconf-gsettings-backend:amd64.
+Preparing to unpack .../13-dconf-gsettings-backend_0.36.0-1_amd64.deb ...
+Unpacking dconf-gsettings-backend:amd64 (0.36.0-1) ...
+Selecting previously unselected package libpackagekit-glib2-18:amd64.
+Preparing to unpack .../14-libpackagekit-glib2-18_1.1.13-2ubuntu1.1_amd64.deb ...
+Unpacking libpackagekit-glib2-18:amd64 (1.1.13-2ubuntu1.1) ...
+Selecting previously unselected package gir1.2-packagekitglib-1.0.
+Preparing to unpack .../15-gir1.2-packagekitglib-1.0_1.1.13-2ubuntu1.1_amd64.deb ...
+Unpacking gir1.2-packagekitglib-1.0 (1.1.13-2ubuntu1.1) ...
+Selecting previously unselected package libproxy1v5:amd64.
+Preparing to unpack .../16-libproxy1v5_0.4.15-10ubuntu1.2_amd64.deb ...
+Unpacking libproxy1v5:amd64 (0.4.15-10ubuntu1.2) ...
+Selecting previously unselected package glib-networking-common.
+Preparing to unpack .../17-glib-networking-common_2.64.2-1ubuntu0.1_all.deb ...
+Unpacking glib-networking-common (2.64.2-1ubuntu0.1) ...
+Selecting previously unselected package glib-networking-services.
+Preparing to unpack .../18-glib-networking-services_2.64.2-1ubuntu0.1_amd64.deb ...
+Unpacking glib-networking-services (2.64.2-1ubuntu0.1) ...
+Selecting previously unselected package gsettings-desktop-schemas.
+Preparing to unpack .../19-gsettings-desktop-schemas_3.36.0-1ubuntu1_all.deb ...
+Unpacking gsettings-desktop-schemas (3.36.0-1ubuntu1) ...
+Selecting previously unselected package glib-networking:amd64.
+Preparing to unpack .../20-glib-networking_2.64.2-1ubuntu0.1_amd64.deb ...
+Unpacking glib-networking:amd64 (2.64.2-1ubuntu0.1) ...
+Selecting previously unselected package libbrotli1:amd64.
+Preparing to unpack .../21-libbrotli1_1.0.7-6ubuntu0.1_amd64.deb ...
+Unpacking libbrotli1:amd64 (1.0.7-6ubuntu0.1) ...
+Selecting previously unselected package libsoup2.4-1:amd64.
+Preparing to unpack .../22-libsoup2.4-1_2.70.0-1ubuntu0.5_amd64.deb ...
+Unpacking libsoup2.4-1:amd64 (2.70.0-1ubuntu0.5) ...
+Selecting previously unselected package libstemmer0d:amd64.
+Preparing to unpack .../23-libstemmer0d_0+svn585-2_amd64.deb ...
+Unpacking libstemmer0d:amd64 (0+svn585-2) ...
+Selecting previously unselected package libappstream4:amd64.
+Preparing to unpack .../24-libappstream4_0.12.10-2_amd64.deb ...
+Unpacking libappstream4:amd64 (0.12.10-2) ...
+Selecting previously unselected package libglib2.0-bin.
+Preparing to unpack .../25-libglib2.0-bin_2.64.6-1~ubuntu20.04.9_amd64.deb ...
+Unpacking libglib2.0-bin (2.64.6-1~ubuntu20.04.9) ...
+Selecting previously unselected package libgstreamer1.0-0:amd64.
+Preparing to unpack .../26-libgstreamer1.0-0_1.16.3-0ubuntu1.2_amd64.deb ...
+Unpacking libgstreamer1.0-0:amd64 (1.16.3-0ubuntu1.2) ...
+Selecting previously unselected package libpolkit-agent-1-0:amd64.
+Preparing to unpack .../27-libpolkit-agent-1-0_0.105-26ubuntu1.3_amd64.deb ...
+Unpacking libpolkit-agent-1-0:amd64 (0.105-26ubuntu1.3) ...
+Selecting previously unselected package policykit-1.
+Preparing to unpack .../28-policykit-1_0.105-26ubuntu1.3_amd64.deb ...
+Unpacking policykit-1 (0.105-26ubuntu1.3) ...
+Selecting previously unselected package packagekit.
+Preparing to unpack .../29-packagekit_1.1.13-2ubuntu1.1_amd64.deb ...
+Unpacking packagekit (1.1.13-2ubuntu1.1) ...
+Selecting previously unselected package packagekit-tools.
+Preparing to unpack .../30-packagekit-tools_1.1.13-2ubuntu1.1_amd64.deb ...
+Unpacking packagekit-tools (1.1.13-2ubuntu1.1) ...
+Selecting previously unselected package python3-requests-unixsocket.
+Preparing to unpack .../31-python3-requests-unixsocket_0.2.0-2_all.deb ...
+Unpacking python3-requests-unixsocket (0.2.0-2) ...
+Selecting previously unselected package python3-software-properties.
+Preparing to unpack .../32-python3-software-properties_0.99.9.12_all.deb ...
+Unpacking python3-software-properties (0.99.9.12) ...
+Selecting previously unselected package software-properties-common.
+Preparing to unpack .../33-software-properties-common_0.99.9.12_all.deb ...
+Unpacking software-properties-common (0.99.9.12) ...
+Selecting previously unselected package unattended-upgrades.
+Preparing to unpack .../34-unattended-upgrades_2.3ubuntu0.3_all.deb ...
+Unpacking unattended-upgrades (2.3ubuntu0.3) ...
+Setting up liblmdb0:amd64 (0.9.24-1) ...
+Setting up libproxy1v5:amd64 (0.4.15-10ubuntu1.2) ...
+Setting up libyaml-0-2:amd64 (0.2.2-1) ...
+Setting up libbrotli1:amd64 (1.0.7-6ubuntu0.1) ...
+Setting up libpackagekit-glib2-18:amd64 (1.1.13-2ubuntu1.1) ...
+Setting up libcap2-bin (1:2.32-1ubuntu0.2) ...
+Setting up libdconf1:amd64 (0.36.0-1) ...
+Setting up python3-requests-unixsocket (0.2.0-2) ...
+Setting up gir1.2-packagekitglib-1.0 (1.1.13-2ubuntu1.1) ...
+Setting up dbus-user-session (1.12.16-2ubuntu2.3) ...
+Setting up python-apt-common (2.0.1ubuntu0.20.04.1) ...
+Setting up libstemmer0d:amd64 (0+svn585-2) ...
+Setting up glib-networking-common (2.64.2-1ubuntu0.1) ...
+Setting up libelf1:amd64 (0.176-1.1ubuntu0.1) ...
+Setting up libpam-cap:amd64 (1:2.32-1ubuntu0.2) ...
+Setting up python3-distro-info (0.23ubuntu1.1) ...
+Setting up iso-codes (4.4-1) ...
+Setting up libpolkit-gobject-1-0:amd64 (0.105-26ubuntu1.3) ...
+Setting up libgstreamer1.0-0:amd64 (1.16.3-0ubuntu1.2) ...
+Setcap worked! gst-ptp-helper is not suid!
+Setting up glib-networking-services (2.64.2-1ubuntu0.1) ...
+Setting up python3-apt (2.0.1ubuntu0.20.04.1) ...
+Setting up libglib2.0-bin (2.64.6-1~ubuntu20.04.9) ...
+Setting up dconf-service (0.36.0-1) ...
+Setting up unattended-upgrades (2.3ubuntu0.3) ...
+
+Creating config file /etc/apt/apt.conf.d/20auto-upgrades with new version
+
+Creating config file /etc/apt/apt.conf.d/50unattended-upgrades with new version
+Created symlink /etc/systemd/system/multi-user.target.wants/unattended-upgrades.service → /lib/systemd/system/unattended-upgrades.service.
+Setting up python3-software-properties (0.99.9.12) ...
+Setting up libpolkit-agent-1-0:amd64 (0.105-26ubuntu1.3) ...
+Setting up policykit-1 (0.105-26ubuntu1.3) ...
+Setting up dconf-gsettings-backend:amd64 (0.36.0-1) ...
+Setting up gsettings-desktop-schemas (3.36.0-1ubuntu1) ...
+Processing triggers for dbus (1.12.16-2ubuntu2.3) ...
+Processing triggers for libglib2.0-0:amd64 (2.64.6-1~ubuntu20.04.9) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.12) ...
+Processing triggers for systemd (245.4-4ubuntu3.24) ...
+Setting up glib-networking:amd64 (2.64.2-1ubuntu0.1) ...
+Setting up libsoup2.4-1:amd64 (2.70.0-1ubuntu0.5) ...
+Setting up libappstream4:amd64 (0.12.10-2) ...
+Setting up packagekit (1.1.13-2ubuntu1.1) ...
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of force-reload.
+Failed to open connection to "system" message bus: Failed to connect to socket /var/run/dbus/system_bus_socket: No such file or directory
+Created symlink /etc/systemd/user/sockets.target.wants/pk-debconf-helper.socket → /usr/lib/systemd/user/pk-debconf-helper.socket.
+Setting up packagekit-tools (1.1.13-2ubuntu1.1) ...
+Setting up software-properties-common (0.99.9.12) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.12) ...
+Processing triggers for dbus (1.12.16-2ubuntu2.3) ...
+Hit:1 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64  InRelease
+Hit:2 http://security.ubuntu.com/ubuntu focal-security InRelease
+Get:3 http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal InRelease [18.1 kB]
+Hit:4 http://archive.ubuntu.com/ubuntu focal InRelease
+Hit:5 http://archive.ubuntu.com/ubuntu focal-updates InRelease
+Hit:6 http://archive.ubuntu.com/ubuntu focal-backports InRelease
+Fetched 18.1 kB in 1s (16.9 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libcurl4 libexpat1-dev libnghttp2-14 libpython3-dev libpython3.8
+  libpython3.8-dev libpython3.9-minimal libpython3.9-stdlib librtmp1 libssh-4
+  python-pip-whl python3-dev python3-lib2to3 python3-setuptools python3-wheel
+  python3.8-dev python3.9-minimal zlib1g-dev
+Suggested packages:
+  python-setuptools-doc python3.9-venv python3.9-doc binfmt-support
+The following NEW packages will be installed:
+  curl libcurl4 libexpat1-dev libnghttp2-14 libpython3-dev libpython3.8
+  libpython3.8-dev libpython3.9-minimal libpython3.9-stdlib librtmp1 libssh-4
+  python-pip-whl python3-dev python3-distutils python3-lib2to3 python3-pip
+  python3-setuptools python3-wheel python3.8-dev python3.9 python3.9-minimal
+  zlib1g-dev
+0 upgraded, 22 newly installed, 0 to remove and 83 not upgraded.
+Need to get 14.7 MB of archives.
+After this operation, 56.6 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 libpython3.9-minimal amd64 3.9.5-3ubuntu0~20.04.1 [756 kB]
+Get:2 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 python3.9-minimal amd64 3.9.5-3ubuntu0~20.04.1 [2022 kB]
+Get:3 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libnghttp2-14 amd64 1.40.0-1ubuntu0.3 [79.9 kB]
+Get:4 http://archive.ubuntu.com/ubuntu focal/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-2build1 [54.9 kB]
+Get:5 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libssh-4 amd64 0.9.3-2ubuntu2.5 [171 kB]
+Get:6 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libcurl4 amd64 7.68.0-1ubuntu2.25 [235 kB]
+Get:7 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 curl amd64 7.68.0-1ubuntu2.25 [162 kB]
+Get:8 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libexpat1-dev amd64 2.2.9-1ubuntu0.8 [117 kB]
+Get:9 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libpython3.8 amd64 3.8.10-0ubuntu1~20.04.18 [1625 kB]
+Get:10 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libpython3.8-dev amd64 3.8.10-0ubuntu1~20.04.18 [3950 kB]
+Get:11 http://archive.ubuntu.com/ubuntu focal/main amd64 libpython3-dev amd64 3.8.2-0ubuntu2 [7236 B]
+Get:12 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 libpython3.9-stdlib amd64 3.9.5-3ubuntu0~20.04.1 [1778 kB]
+Get:13 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 python-pip-whl all 20.0.2-5ubuntu1.11 [1808 kB]
+Get:14 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 zlib1g-dev amd64 1:1.2.11.dfsg-2ubuntu1.5 [155 kB]
+Get:15 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 python3.8-dev amd64 3.8.10-0ubuntu1~20.04.18 [514 kB]
+Get:16 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 python3-lib2to3 all 3.8.10-0ubuntu1~20.04 [76.3 kB]
+Get:17 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 python3-distutils all 3.8.10-0ubuntu1~20.04 [141 kB]
+Get:18 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-dev amd64 3.8.2-0ubuntu2 [1212 B]
+Get:19 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 python3-setuptools all 45.2.0-1ubuntu0.3 [330 kB]
+Get:20 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 python3-wheel all 0.34.2-1ubuntu0.1 [23.9 kB]
+Get:21 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 python3-pip all 20.0.2-5ubuntu1.11 [231 kB]
+Get:22 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 python3.9 amd64 3.9.5-3ubuntu0~20.04.1 [423 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 14.7 MB in 1s (10.2 MB/s)
+Selecting previously unselected package libpython3.9-minimal:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 23333 files and directories currently installed.)
+Preparing to unpack .../00-libpython3.9-minimal_3.9.5-3ubuntu0~20.04.1_amd64.deb ...
+Unpacking libpython3.9-minimal:amd64 (3.9.5-3ubuntu0~20.04.1) ...
+Selecting previously unselected package python3.9-minimal.
+Preparing to unpack .../01-python3.9-minimal_3.9.5-3ubuntu0~20.04.1_amd64.deb ...
+Unpacking python3.9-minimal (3.9.5-3ubuntu0~20.04.1) ...
+Selecting previously unselected package libnghttp2-14:amd64.
+Preparing to unpack .../02-libnghttp2-14_1.40.0-1ubuntu0.3_amd64.deb ...
+Unpacking libnghttp2-14:amd64 (1.40.0-1ubuntu0.3) ...
+Selecting previously unselected package librtmp1:amd64.
+Preparing to unpack .../03-librtmp1_2.4+20151223.gitfa8646d.1-2build1_amd64.deb ...
+Unpacking librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2build1) ...
+Selecting previously unselected package libssh-4:amd64.
+Preparing to unpack .../04-libssh-4_0.9.3-2ubuntu2.5_amd64.deb ...
+Unpacking libssh-4:amd64 (0.9.3-2ubuntu2.5) ...
+Selecting previously unselected package libcurl4:amd64.
+Preparing to unpack .../05-libcurl4_7.68.0-1ubuntu2.25_amd64.deb ...
+Unpacking libcurl4:amd64 (7.68.0-1ubuntu2.25) ...
+Selecting previously unselected package curl.
+Preparing to unpack .../06-curl_7.68.0-1ubuntu2.25_amd64.deb ...
+Unpacking curl (7.68.0-1ubuntu2.25) ...
+Selecting previously unselected package libexpat1-dev:amd64.
+Preparing to unpack .../07-libexpat1-dev_2.2.9-1ubuntu0.8_amd64.deb ...
+Unpacking libexpat1-dev:amd64 (2.2.9-1ubuntu0.8) ...
+Selecting previously unselected package libpython3.8:amd64.
+Preparing to unpack .../08-libpython3.8_3.8.10-0ubuntu1~20.04.18_amd64.deb ...
+Unpacking libpython3.8:amd64 (3.8.10-0ubuntu1~20.04.18) ...
+Selecting previously unselected package libpython3.8-dev:amd64.
+Preparing to unpack .../09-libpython3.8-dev_3.8.10-0ubuntu1~20.04.18_amd64.deb ...
+Unpacking libpython3.8-dev:amd64 (3.8.10-0ubuntu1~20.04.18) ...
+Selecting previously unselected package libpython3-dev:amd64.
+Preparing to unpack .../10-libpython3-dev_3.8.2-0ubuntu2_amd64.deb ...
+Unpacking libpython3-dev:amd64 (3.8.2-0ubuntu2) ...
+Selecting previously unselected package libpython3.9-stdlib:amd64.
+Preparing to unpack .../11-libpython3.9-stdlib_3.9.5-3ubuntu0~20.04.1_amd64.deb ...
+Unpacking libpython3.9-stdlib:amd64 (3.9.5-3ubuntu0~20.04.1) ...
+Selecting previously unselected package python-pip-whl.
+Preparing to unpack .../12-python-pip-whl_20.0.2-5ubuntu1.11_all.deb ...
+Unpacking python-pip-whl (20.0.2-5ubuntu1.11) ...
+Selecting previously unselected package zlib1g-dev:amd64.
+Preparing to unpack .../13-zlib1g-dev_1%3a1.2.11.dfsg-2ubuntu1.5_amd64.deb ...
+Unpacking zlib1g-dev:amd64 (1:1.2.11.dfsg-2ubuntu1.5) ...
+Selecting previously unselected package python3.8-dev.
+Preparing to unpack .../14-python3.8-dev_3.8.10-0ubuntu1~20.04.18_amd64.deb ...
+Unpacking python3.8-dev (3.8.10-0ubuntu1~20.04.18) ...
+Selecting previously unselected package python3-lib2to3.
+Preparing to unpack .../15-python3-lib2to3_3.8.10-0ubuntu1~20.04_all.deb ...
+Unpacking python3-lib2to3 (3.8.10-0ubuntu1~20.04) ...
+Selecting previously unselected package python3-distutils.
+Preparing to unpack .../16-python3-distutils_3.8.10-0ubuntu1~20.04_all.deb ...
+Unpacking python3-distutils (3.8.10-0ubuntu1~20.04) ...
+Selecting previously unselected package python3-dev.
+Preparing to unpack .../17-python3-dev_3.8.2-0ubuntu2_amd64.deb ...
+Unpacking python3-dev (3.8.2-0ubuntu2) ...
+Selecting previously unselected package python3-setuptools.
+Preparing to unpack .../18-python3-setuptools_45.2.0-1ubuntu0.3_all.deb ...
+Unpacking python3-setuptools (45.2.0-1ubuntu0.3) ...
+Selecting previously unselected package python3-wheel.
+Preparing to unpack .../19-python3-wheel_0.34.2-1ubuntu0.1_all.deb ...
+Unpacking python3-wheel (0.34.2-1ubuntu0.1) ...
+Selecting previously unselected package python3-pip.
+Preparing to unpack .../20-python3-pip_20.0.2-5ubuntu1.11_all.deb ...
+Unpacking python3-pip (20.0.2-5ubuntu1.11) ...
+Selecting previously unselected package python3.9.
+Preparing to unpack .../21-python3.9_3.9.5-3ubuntu0~20.04.1_amd64.deb ...
+Unpacking python3.9 (3.9.5-3ubuntu0~20.04.1) ...
+Setting up libpython3.9-minimal:amd64 (3.9.5-3ubuntu0~20.04.1) ...
+Setting up libnghttp2-14:amd64 (1.40.0-1ubuntu0.3) ...
+Setting up python3-wheel (0.34.2-1ubuntu0.1) ...
+Setting up libexpat1-dev:amd64 (2.2.9-1ubuntu0.8) ...
+Setting up librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2build1) ...
+Setting up libpython3.8:amd64 (3.8.10-0ubuntu1~20.04.18) ...
+Setting up libssh-4:amd64 (0.9.3-2ubuntu2.5) ...
+Setting up zlib1g-dev:amd64 (1:1.2.11.dfsg-2ubuntu1.5) ...
+Setting up libcurl4:amd64 (7.68.0-1ubuntu2.25) ...
+Setting up python-pip-whl (20.0.2-5ubuntu1.11) ...
+Setting up curl (7.68.0-1ubuntu2.25) ...
+Setting up python3.9-minimal (3.9.5-3ubuntu0~20.04.1) ...
+Setting up python3-lib2to3 (3.8.10-0ubuntu1~20.04) ...
+Setting up libpython3.9-stdlib:amd64 (3.9.5-3ubuntu0~20.04.1) ...
+Setting up python3-distutils (3.8.10-0ubuntu1~20.04) ...
+Setting up python3-setuptools (45.2.0-1ubuntu0.3) ...
+Setting up libpython3.8-dev:amd64 (3.8.10-0ubuntu1~20.04.18) ...
+Setting up python3-pip (20.0.2-5ubuntu1.11) ...
+Setting up python3.8-dev (3.8.10-0ubuntu1~20.04.18) ...
+Setting up python3.9 (3.9.5-3ubuntu0~20.04.1) ...
+Setting up libpython3-dev:amd64 (3.8.2-0ubuntu2) ...
+Setting up python3-dev (3.8.2-0ubuntu2) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.12) ...
+Processing triggers for mime-support (3.64ubuntu1) ...
+ ---> a5b2a28a2bcd
+Step 11/28 : RUN python3.9 -m pip install --upgrade pip && python3.9 -m pip install awscli
+ ---> Running in 45b3dcec607b
+Collecting pip
+  Downloading pip-25.3-py3-none-any.whl (1.8 MB)
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 20.0.2
+    Not uninstalling pip at /usr/lib/python3/dist-packages, outside environment /usr
+    Can't uninstall 'pip'. No files were found to uninstall.
+Successfully installed pip-25.3
+Collecting awscli
+  Downloading awscli-1.42.76-py3-none-any.whl.metadata (11 kB)
+Collecting botocore==1.40.76 (from awscli)
+  Downloading botocore-1.40.76-py3-none-any.whl.metadata (5.9 kB)
+Collecting docutils<=0.19,>=0.18.1 (from awscli)
+  Downloading docutils-0.19-py3-none-any.whl.metadata (2.7 kB)
+Collecting s3transfer<0.15.0,>=0.14.0 (from awscli)
+  Downloading s3transfer-0.14.0-py3-none-any.whl.metadata (1.7 kB)
+Collecting PyYAML<6.1,>=3.10 (from awscli)
+  Downloading pyyaml-6.0.3-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+Collecting colorama<0.4.7,>=0.2.5 (from awscli)
+  Downloading colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+Collecting rsa<4.8,>=3.1.2 (from awscli)
+  Downloading rsa-4.7.2-py3-none-any.whl.metadata (3.6 kB)
+Collecting jmespath<2.0.0,>=0.7.1 (from botocore==1.40.76->awscli)
+  Downloading jmespath-1.0.1-py3-none-any.whl.metadata (7.6 kB)
+Collecting python-dateutil<3.0.0,>=2.1 (from botocore==1.40.76->awscli)
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Requirement already satisfied: urllib3<1.27,>=1.25.4 in /usr/lib/python3/dist-packages (from botocore==1.40.76->awscli) (1.25.8)
+Requirement already satisfied: six>=1.5 in /usr/lib/python3/dist-packages (from python-dateutil<3.0.0,>=2.1->botocore==1.40.76->awscli) (1.14.0)
+Collecting pyasn1>=0.1.3 (from rsa<4.8,>=3.1.2->awscli)
+  Downloading pyasn1-0.6.1-py3-none-any.whl.metadata (8.4 kB)
+Downloading awscli-1.42.76-py3-none-any.whl (4.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.6/4.6 MB 20.4 MB/s  0:00:00
+Downloading botocore-1.40.76-py3-none-any.whl (14.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 14.2/14.2 MB 50.7 MB/s  0:00:00
+Downloading colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+Downloading docutils-0.19-py3-none-any.whl (570 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 570.5/570.5 kB 25.2 MB/s  0:00:00
+Downloading jmespath-1.0.1-py3-none-any.whl (20 kB)
+Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Downloading pyyaml-6.0.3-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (750 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 750.8/750.8 kB 17.9 MB/s  0:00:00
+Downloading rsa-4.7.2-py3-none-any.whl (34 kB)
+Downloading s3transfer-0.14.0-py3-none-any.whl (85 kB)
+Downloading pyasn1-0.6.1-py3-none-any.whl (83 kB)
+Installing collected packages: PyYAML, python-dateutil, pyasn1, jmespath, docutils, colorama, rsa, botocore, s3transfer, awscli
+
+Successfully installed PyYAML-6.0.3 awscli-1.42.76 botocore-1.40.76 colorama-0.4.6 docutils-0.19 jmespath-1.0.1 pyasn1-0.6.1 python-dateutil-2.9.0.post0 rsa-4.7.2 s3transfer-0.14.0
+[91mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[0m ---> cb759466434c
+Step 12/28 : RUN curl -L https://github.com/peak/s5cmd/releases/download/v2.0.0/s5cmd_2.0.0_Linux-64bit.tar.gz -o s5cmd_2.0.0_Linux-64bit.tar.gz &&    tar -xzvf s5cmd_2.0.0_Linux-64bit.tar.gz &&    mv s5cmd /bin/ &&    rm CHANGELOG.md LICENSE README.md
+ ---> Running in 0a91e0748e85
+[91m  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  U[0m[91mpload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:-[0m[91m-:--     0[0m[91m  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+[0m[91m100 4176k  100 4176k    0     0  13.1M      0 --:--:-- --:--:-- --:--:-- 13.1M
+[0mCHANGELOG.md
+LICENSE
+README.md
+s5cmd
+ ---> 3fac42b786b4
+Step 13/28 : COPY --from=812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base-cuda:fe0b-main /root/Makefile /root/Makefile
+ ---> d97749d4335d
+Step 14/28 : COPY --from=812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base-cuda:fe0b-main /root/flytekit.config /root/flytekit.config
+ ---> 3449c6cb6069
+Step 15/28 : shell [     "/usr/bin/env", "bash",     "-o", "errexit",     "-o", "pipefail",     "-o", "nounset",     "-o", "verbose",     "-o", "errtrace",     "-O", "inherit_errexit",     "-O", "shift_verbose",     "-c" ]
+ ---> Running in a59e35708dc0
+ ---> 22657953a4a1
+Step 16/28 : env TZ='Etc/UTC'
+ ---> Running in c417ba7cf261
+ ---> 9b0d8598e1b4
+Step 17/28 : env LANG='en_US.UTF-8'
+ ---> Running in 6e5083905e0a
+ ---> e03bc8b7cde5
+Step 18/28 : arg DEBIAN_FRONTEND=noninteractive
+ ---> Running in 83d64621ee6f
+ ---> b43dd892c6ad
+Step 19/28 : run pip install latch==2.67.18
+ ---> Running in 1b5693cf7265
+[91mpip install latch==2.67.18
+[0mCollecting latch==2.67.18
+  Downloading latch-2.67.18-py3-none-any.whl.metadata (8.0 kB)
+Collecting aioconsole==0.6.1 (from latch==2.67.18)
+  Downloading aioconsole-0.6.1-py3-none-any.whl.metadata (5.2 kB)
+Collecting apscheduler>=3.10.0 (from latch==2.67.18)
+  Downloading apscheduler-3.11.1-py3-none-any.whl.metadata (6.4 kB)
+Collecting asyncssh==2.13.2 (from latch==2.67.18)
+  Downloading asyncssh-2.13.2-py3-none-any.whl.metadata (9.8 kB)
+Collecting boto3>=1.26.0 (from latch==2.67.18)
+  Downloading boto3-1.40.76-py3-none-any.whl.metadata (6.8 kB)
+Collecting click>=8.0 (from latch==2.67.18)
+  Downloading click-8.1.8-py3-none-any.whl.metadata (2.3 kB)
+Collecting dill>=0.4.0 (from latch==2.67.18)
+  Downloading dill-0.4.0-py3-none-any.whl.metadata (10 kB)
+Collecting docker>=7.1.0 (from latch==2.67.18)
+  Downloading docker-7.1.0-py3-none-any.whl.metadata (3.8 kB)
+Collecting gitpython==3.1.40 (from latch==2.67.18)
+  Downloading GitPython-3.1.40-py3-none-any.whl.metadata (12 kB)
+Collecting gql==3.5.0 (from latch==2.67.18)
+  Downloading gql-3.5.0-py2.py3-none-any.whl.metadata (9.2 kB)
+Collecting graphql-core==3.2.3 (from latch==2.67.18)
+  Downloading graphql_core-3.2.3-py3-none-any.whl.metadata (10 kB)
+Collecting kubernetes>=24.2.0 (from latch==2.67.18)
+  Downloading kubernetes-34.1.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Collecting latch-persistence>=0.1.5 (from latch==2.67.18)
+  Downloading latch_persistence-0.1.5-py3-none-any.whl.metadata (8.2 kB)
+Collecting lytekit==0.15.29 (from latch==2.67.18)
+  Downloading lytekit-0.15.29-py3-none-any.whl.metadata (5.8 kB)
+Collecting lytekitplugins-pods==0.7.4 (from latch==2.67.18)
+  Downloading lytekitplugins_pods-0.7.4-py3-none-any.whl.metadata (937 bytes)
+Collecting orjson>=3.10.12 (from latch==2.67.18)
+  Downloading orjson-3.11.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (41 kB)
+Collecting paramiko>=3.4.0 (from latch==2.67.18)
+  Downloading paramiko-4.0.0-py3-none-any.whl.metadata (3.9 kB)
+Collecting pyjwt>=0.2.0 (from latch==2.67.18)
+  Downloading PyJWT-2.10.1-py3-none-any.whl.metadata (4.0 kB)
+Requirement already satisfied: python-dateutil>=2.8 in /usr/local/lib/python3.9/dist-packages (from latch==2.67.18) (2.9.0.post0)
+Collecting pyxattr>=0.8.1 (from latch==2.67.18)
+  Downloading pyxattr-0.8.1.tar.gz (38 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting requests-toolbelt==1.0.0 (from latch==2.67.18)
+  Downloading requests_toolbelt-1.0.0-py2.py3-none-any.whl.metadata (14 kB)
+Collecting requests>=2.28.1 (from latch==2.67.18)
+  Downloading requests-2.32.5-py3-none-any.whl.metadata (4.9 kB)
+Collecting scp>=0.14.0 (from latch==2.67.18)
+  Downloading scp-0.15.0-py2.py3-none-any.whl.metadata (4.3 kB)
+Collecting setuptools>=75.3.0 (from latch==2.67.18)
+  Using cached setuptools-80.9.0-py3-none-any.whl.metadata (6.6 kB)
+Collecting tqdm>=4.63.0 (from latch==2.67.18)
+  Downloading tqdm-4.67.1-py3-none-any.whl.metadata (57 kB)
+Collecting typing-extensions>=4.12.0 (from latch==2.67.18)
+  Downloading typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting watchfiles==0.19.0 (from latch==2.67.18)
+  Downloading watchfiles-0.19.0-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+Collecting websockets>=15.0.1 (from latch==2.67.18)
+  Downloading websockets-15.0.1-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.8 kB)
+Collecting cryptography>=3.1 (from asyncssh==2.13.2->latch==2.67.18)
+  Downloading cryptography-46.0.3-cp38-abi3-manylinux_2_28_x86_64.whl.metadata (5.7 kB)
+Collecting gitdb<5,>=4.0.1 (from gitpython==3.1.40->latch==2.67.18)
+  Downloading gitdb-4.0.12-py3-none-any.whl.metadata (1.2 kB)
+Collecting yarl<2.0,>=1.6 (from gql==3.5.0->latch==2.67.18)
+  Downloading yarl-1.22.0-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (75 kB)
+Collecting backoff<3.0,>=1.11.1 (from gql==3.5.0->latch==2.67.18)
+  Downloading backoff-2.2.1-py3-none-any.whl.metadata (14 kB)
+Collecting anyio<5,>=3.0 (from gql==3.5.0->latch==2.67.18)
+  Downloading anyio-4.11.0-py3-none-any.whl.metadata (4.1 kB)
+Collecting lyteidl==0.2.1 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading lyteidl-0.2.1-py3-none-any.whl.metadata (403 bytes)
+Requirement already satisfied: wheel<1.0.0,>=0.30.0 in /usr/lib/python3/dist-packages (from lytekit==0.15.29->latch==2.67.18) (0.34.2)
+Collecting croniter<4.0.0,>=0.3.20 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading croniter-3.0.4-py2.py3-none-any.whl.metadata (29 kB)
+Collecting deprecated<2.0,>=1.0 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading deprecated-1.3.1-py2.py3-none-any.whl.metadata (5.9 kB)
+Collecting grpcio!=1.45.0,<2.0,>=1.43.0 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading grpcio-1.76.0-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (3.7 kB)
+Collecting grpcio-status!=1.45.0,>=1.43 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading grpcio_status-1.76.0-py3-none-any.whl.metadata (1.1 kB)
+Collecting protobuf<4,>=3.6.1 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading protobuf-3.20.3-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.whl.metadata (679 bytes)
+Collecting python-json-logger>=2.0.0 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading python_json_logger-4.0.0-py3-none-any.whl.metadata (4.0 kB)
+Collecting pytimeparse<2.0.0,>=1.1.8 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading pytimeparse-1.1.8-py2.py3-none-any.whl.metadata (3.4 kB)
+Collecting pytz (from lytekit==0.15.29->latch==2.67.18)
+  Downloading pytz-2025.2-py2.py3-none-any.whl.metadata (22 kB)
+Collecting keyring>=18.0.1 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading keyring-25.7.0-py3-none-any.whl.metadata (21 kB)
+Collecting responses>=0.10.7 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading responses-0.25.8-py3-none-any.whl.metadata (47 kB)
+Collecting sortedcontainers<3.0.0,>=1.5.9 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading sortedcontainers-2.4.0-py2.py3-none-any.whl.metadata (10 kB)
+Collecting statsd<4.0.0,>=3.0.0 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading statsd-3.3.0-py2.py3-none-any.whl.metadata (2.8 kB)
+Requirement already satisfied: urllib3<2.0.0,>=1.22 in /usr/lib/python3/dist-packages (from lytekit==0.15.29->latch==2.67.18) (1.25.8)
+Collecting wrapt<2.0.0,>=1.0.0 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading wrapt-1.17.3-cp39-cp39-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.4 kB)
+Collecting retry==0.9.2 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading retry-0.9.2-py2.py3-none-any.whl.metadata (5.8 kB)
+Collecting dataclasses-json<=0.5.6,>=0.5.2 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading dataclasses_json-0.5.6-py3-none-any.whl.metadata (22 kB)
+Collecting jsonschema>=4.5.1 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading jsonschema-4.25.1-py3-none-any.whl.metadata (7.6 kB)
+Collecting marshmallow-jsonschema>=0.12.0 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading marshmallow_jsonschema-0.13.0-py3-none-any.whl.metadata (7.5 kB)
+Collecting marshmallow-enum (from lytekit==0.15.29->latch==2.67.18)
+  Downloading marshmallow_enum-1.5.1-py2.py3-none-any.whl.metadata (2.5 kB)
+Collecting natsort>=7.0.1 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading natsort-8.4.0-py3-none-any.whl.metadata (21 kB)
+Collecting docker-image-py>=0.1.10 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading docker_image_py-0.1.13-py3-none-any.whl.metadata (223 bytes)
+Collecting docstring-parser>=0.9.0 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading docstring_parser-0.17.0-py3-none-any.whl.metadata (3.5 kB)
+Collecting diskcache>=5.2.1 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading diskcache-5.6.3-py3-none-any.whl.metadata (20 kB)
+Collecting cloudpickle>=2.0.0 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading cloudpickle-3.1.2-py3-none-any.whl.metadata (7.1 kB)
+Collecting cookiecutter>=1.7.3 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading cookiecutter-2.6.0-py3-none-any.whl.metadata (7.3 kB)
+Collecting memory-profiler==0.61.0 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading memory_profiler-0.61.0-py3-none-any.whl.metadata (20 kB)
+Collecting googleapis-common-protos (from lyteidl==0.2.1->lytekit==0.15.29->latch==2.67.18)
+  Downloading googleapis_common_protos-1.72.0-py3-none-any.whl.metadata (9.4 kB)
+Collecting protoc-gen-swagger (from lyteidl==0.2.1->lytekit==0.15.29->latch==2.67.18)
+  Downloading protoc_gen_swagger-0.1.0-py2.py3-none-any.whl.metadata (2.3 kB)
+Collecting psutil (from memory-profiler==0.61.0->lytekit==0.15.29->latch==2.67.18)
+  Downloading psutil-7.1.3-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata (23 kB)
+Collecting decorator>=3.4.2 (from retry==0.9.2->lytekit==0.15.29->latch==2.67.18)
+  Downloading decorator-5.2.1-py3-none-any.whl.metadata (3.9 kB)
+Collecting py<2.0.0,>=1.4.26 (from retry==0.9.2->lytekit==0.15.29->latch==2.67.18)
+  Downloading py-1.11.0-py2.py3-none-any.whl.metadata (2.8 kB)
+Collecting exceptiongroup>=1.0.2 (from anyio<5,>=3.0->gql==3.5.0->latch==2.67.18)
+  Downloading exceptiongroup-1.3.0-py3-none-any.whl.metadata (6.7 kB)
+Requirement already satisfied: idna>=2.8 in /usr/lib/python3/dist-packages (from anyio<5,>=3.0->gql==3.5.0->latch==2.67.18) (2.8)
+Collecting sniffio>=1.1 (from anyio<5,>=3.0->gql==3.5.0->latch==2.67.18)
+  Downloading sniffio-1.3.1-py3-none-any.whl.metadata (3.9 kB)
+Collecting marshmallow<4.0.0,>=3.3.0 (from dataclasses-json<=0.5.6,>=0.5.2->lytekit==0.15.29->latch==2.67.18)
+  Downloading marshmallow-3.26.1-py3-none-any.whl.metadata (7.3 kB)
+Collecting typing-inspect>=0.4.0 (from dataclasses-json<=0.5.6,>=0.5.2->lytekit==0.15.29->latch==2.67.18)
+  Downloading typing_inspect-0.9.0-py3-none-any.whl.metadata (1.5 kB)
+Collecting smmap<6,>=3.0.1 (from gitdb<5,>=4.0.1->gitpython==3.1.40->latch==2.67.18)
+  Downloading smmap-5.0.2-py3-none-any.whl.metadata (4.3 kB)
+Collecting packaging>=17.0 (from marshmallow<4.0.0,>=3.3.0->dataclasses-json<=0.5.6,>=0.5.2->lytekit==0.15.29->latch==2.67.18)
+  Downloading packaging-25.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting charset_normalizer<4,>=2 (from requests>=2.28.1->latch==2.67.18)
+  Downloading charset_normalizer-3.4.4-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (37 kB)
+Requirement already satisfied: certifi>=2017.4.17 in /usr/lib/python3/dist-packages (from requests>=2.28.1->latch==2.67.18) (2019.11.28)
+Collecting multidict>=4.0 (from yarl<2.0,>=1.6->gql==3.5.0->latch==2.67.18)
+  Downloading multidict-6.7.0-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (5.3 kB)
+Collecting propcache>=0.2.1 (from yarl<2.0,>=1.6->gql==3.5.0->latch==2.67.18)
+  Downloading propcache-0.4.1-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (13 kB)
+Collecting tzlocal>=3.0 (from apscheduler>=3.10.0->latch==2.67.18)
+  Downloading tzlocal-5.3.1-py3-none-any.whl.metadata (7.6 kB)
+Requirement already satisfied: botocore<1.41.0,>=1.40.76 in /usr/local/lib/python3.9/dist-packages (from boto3>=1.26.0->latch==2.67.18) (1.40.76)
+Requirement already satisfied: jmespath<2.0.0,>=0.7.1 in /usr/local/lib/python3.9/dist-packages (from boto3>=1.26.0->latch==2.67.18) (1.0.1)
+Requirement already satisfied: s3transfer<0.15.0,>=0.14.0 in /usr/local/lib/python3.9/dist-packages (from boto3>=1.26.0->latch==2.67.18) (0.14.0)
+Requirement already satisfied: six>=1.5 in /usr/lib/python3/dist-packages (from python-dateutil>=2.8->latch==2.67.18) (1.14.0)
+Collecting binaryornot>=0.4.4 (from cookiecutter>=1.7.3->lytekit==0.15.29->latch==2.67.18)
+  Downloading binaryornot-0.4.4-py2.py3-none-any.whl.metadata (6.0 kB)
+Collecting Jinja2<4.0.0,>=2.7 (from cookiecutter>=1.7.3->lytekit==0.15.29->latch==2.67.18)
+  Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Requirement already satisfied: pyyaml>=5.3.1 in /usr/local/lib/python3.9/dist-packages (from cookiecutter>=1.7.3->lytekit==0.15.29->latch==2.67.18) (6.0.3)
+Collecting python-slugify>=4.0.0 (from cookiecutter>=1.7.3->lytekit==0.15.29->latch==2.67.18)
+  Downloading python_slugify-8.0.4-py2.py3-none-any.whl.metadata (8.5 kB)
+Collecting arrow (from cookiecutter>=1.7.3->lytekit==0.15.29->latch==2.67.18)
+  Downloading arrow-1.4.0-py3-none-any.whl.metadata (7.7 kB)
+Collecting rich (from cookiecutter>=1.7.3->lytekit==0.15.29->latch==2.67.18)
+  Downloading rich-14.2.0-py3-none-any.whl.metadata (18 kB)
+Collecting MarkupSafe>=2.0 (from Jinja2<4.0.0,>=2.7->cookiecutter>=1.7.3->lytekit==0.15.29->latch==2.67.18)
+  Downloading markupsafe-3.0.3-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Requirement already satisfied: chardet>=3.0.2 in /usr/lib/python3/dist-packages (from binaryornot>=0.4.4->cookiecutter>=1.7.3->lytekit==0.15.29->latch==2.67.18) (3.0.4)
+Collecting cffi>=2.0.0 (from cryptography>=3.1->asyncssh==2.13.2->latch==2.67.18)
+  Downloading cffi-2.0.0-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.6 kB)
+Collecting pycparser (from cffi>=2.0.0->cryptography>=3.1->asyncssh==2.13.2->latch==2.67.18)
+  Downloading pycparser-2.23-py3-none-any.whl.metadata (993 bytes)
+Collecting urllib3<2.0.0,>=1.22 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading urllib3-1.26.20-py2.py3-none-any.whl.metadata (50 kB)
+Collecting regex>=2019.4.14 (from docker-image-py>=0.1.10->lytekit==0.15.29->latch==2.67.18)
+  Downloading regex-2025.11.3-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+INFO: pip is looking at multiple versions of grpcio-status to determine which version is compatible with other requirements. This could take a while.
+Collecting grpcio-status!=1.45.0,>=1.43 (from lytekit==0.15.29->latch==2.67.18)
+  Downloading grpcio_status-1.75.1-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.75.0-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.74.0-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.73.1-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.73.0-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.72.2-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.72.1-py3-none-any.whl.metadata (1.1 kB)
+INFO: pip is still looking at multiple versions of grpcio-status to determine which version is compatible with other requirements. This could take a while.
+  Downloading grpcio_status-1.71.2-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.71.0-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.70.0-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.69.0-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.68.1-py3-none-any.whl.metadata (1.1 kB)
+INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. See https://pip.pypa.io/warnings/backtracking for guidance. If you want to abort this run, press Ctrl + C.
+  Downloading grpcio_status-1.68.0-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.67.1-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.67.0-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.66.2-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.66.1-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.66.0-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.65.5-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.65.4-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.65.2-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.65.1-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.64.3-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.64.1-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.64.0-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.63.2-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.63.0-py3-none-any.whl.metadata (1.1 kB)
+  Downloading grpcio_status-1.62.3-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.62.2-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.62.1-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.62.0-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.61.3-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.60.2-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.60.1-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.60.0-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.59.5-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.59.3-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.59.2-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.59.0-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.58.3-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.58.0-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.57.0-py3-none-any.whl.metadata (1.2 kB)
+  Downloading grpcio_status-1.56.2-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.56.0-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.55.3-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.54.3-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.54.2-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.54.0-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.53.2-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.53.1-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.53.0-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.51.3-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.51.1-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.50.0-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.49.1-py3-none-any.whl.metadata (1.3 kB)
+  Downloading grpcio_status-1.48.2-py3-none-any.whl.metadata (1.2 kB)
+Collecting attrs>=22.2.0 (from jsonschema>=4.5.1->lytekit==0.15.29->latch==2.67.18)
+  Downloading attrs-25.4.0-py3-none-any.whl.metadata (10 kB)
+Collecting jsonschema-specifications>=2023.03.6 (from jsonschema>=4.5.1->lytekit==0.15.29->latch==2.67.18)
+  Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+Collecting referencing>=0.28.4 (from jsonschema>=4.5.1->lytekit==0.15.29->latch==2.67.18)
+  Downloading referencing-0.36.2-py3-none-any.whl.metadata (2.8 kB)
+Collecting rpds-py>=0.7.1 (from jsonschema>=4.5.1->lytekit==0.15.29->latch==2.67.18)
+  Downloading rpds_py-0.27.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.2 kB)
+Collecting SecretStorage>=3.2 (from keyring>=18.0.1->lytekit==0.15.29->latch==2.67.18)
+  Downloading SecretStorage-3.3.3-py3-none-any.whl.metadata (4.0 kB)
+Collecting jeepney>=0.4.2 (from keyring>=18.0.1->lytekit==0.15.29->latch==2.67.18)
+  Downloading jeepney-0.9.0-py3-none-any.whl.metadata (1.2 kB)
+Collecting importlib_metadata>=4.11.4 (from keyring>=18.0.1->lytekit==0.15.29->latch==2.67.18)
+  Downloading importlib_metadata-8.7.0-py3-none-any.whl.metadata (4.8 kB)
+Collecting jaraco.classes (from keyring>=18.0.1->lytekit==0.15.29->latch==2.67.18)
+  Downloading jaraco.classes-3.4.0-py3-none-any.whl.metadata (2.6 kB)
+Collecting jaraco.functools (from keyring>=18.0.1->lytekit==0.15.29->latch==2.67.18)
+  Downloading jaraco_functools-4.3.0-py3-none-any.whl.metadata (2.9 kB)
+Collecting jaraco.context (from keyring>=18.0.1->lytekit==0.15.29->latch==2.67.18)
+  Downloading jaraco.context-6.0.1-py3-none-any.whl.metadata (4.1 kB)
+Collecting zipp>=3.20 (from importlib_metadata>=4.11.4->keyring>=18.0.1->lytekit==0.15.29->latch==2.67.18)
+  Downloading zipp-3.23.0-py3-none-any.whl.metadata (3.6 kB)
+Collecting google-auth>=1.0.1 (from kubernetes>=24.2.0->latch==2.67.18)
+  Downloading google_auth-2.43.0-py2.py3-none-any.whl.metadata (6.6 kB)
+Collecting websocket-client!=0.40.0,!=0.41.*,!=0.42.*,>=0.32.0 (from kubernetes>=24.2.0->latch==2.67.18)
+  Downloading websocket_client-1.9.0-py3-none-any.whl.metadata (8.3 kB)
+Collecting requests-oauthlib (from kubernetes>=24.2.0->latch==2.67.18)
+  Downloading requests_oauthlib-2.0.0-py2.py3-none-any.whl.metadata (11 kB)
+Collecting durationpy>=0.7 (from kubernetes>=24.2.0->latch==2.67.18)
+  Downloading durationpy-0.10-py3-none-any.whl.metadata (340 bytes)
+Collecting cachetools<7.0,>=2.0.0 (from google-auth>=1.0.1->kubernetes>=24.2.0->latch==2.67.18)
+  Downloading cachetools-6.2.2-py3-none-any.whl.metadata (5.6 kB)
+Collecting pyasn1-modules>=0.2.1 (from google-auth>=1.0.1->kubernetes>=24.2.0->latch==2.67.18)
+  Downloading pyasn1_modules-0.4.2-py3-none-any.whl.metadata (3.5 kB)
+Requirement already satisfied: rsa<5,>=3.1.4 in /usr/local/lib/python3.9/dist-packages (from google-auth>=1.0.1->kubernetes>=24.2.0->latch==2.67.18) (4.7.2)
+Requirement already satisfied: pyasn1>=0.1.3 in /usr/local/lib/python3.9/dist-packages (from rsa<5,>=3.1.4->google-auth>=1.0.1->kubernetes>=24.2.0->latch==2.67.18) (0.6.1)
+Collecting bcrypt>=3.2 (from paramiko>=3.4.0->latch==2.67.18)
+  Downloading bcrypt-5.0.0-cp39-abi3-manylinux_2_28_x86_64.whl.metadata (10 kB)
+Collecting invoke>=2.0 (from paramiko>=3.4.0->latch==2.67.18)
+  Downloading invoke-2.2.1-py3-none-any.whl.metadata (3.3 kB)
+Collecting pynacl>=1.5 (from paramiko>=3.4.0->latch==2.67.18)
+  Downloading pynacl-1.6.1-cp38-abi3-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (9.8 kB)
+Collecting text-unidecode>=1.3 (from python-slugify>=4.0.0->cookiecutter>=1.7.3->lytekit==0.15.29->latch==2.67.18)
+  Downloading text_unidecode-1.3-py2.py3-none-any.whl.metadata (2.4 kB)
+Collecting mypy-extensions>=0.3.0 (from typing-inspect>=0.4.0->dataclasses-json<=0.5.6,>=0.5.2->lytekit==0.15.29->latch==2.67.18)
+  Downloading mypy_extensions-1.1.0-py3-none-any.whl.metadata (1.1 kB)
+Collecting tzdata (from arrow->cookiecutter>=1.7.3->lytekit==0.15.29->latch==2.67.18)
+  Downloading tzdata-2025.2-py2.py3-none-any.whl.metadata (1.4 kB)
+Collecting more-itertools (from jaraco.classes->keyring>=18.0.1->lytekit==0.15.29->latch==2.67.18)
+  Downloading more_itertools-10.8.0-py3-none-any.whl.metadata (39 kB)
+Collecting backports.tarfile (from jaraco.context->keyring>=18.0.1->lytekit==0.15.29->latch==2.67.18)
+  Downloading backports.tarfile-1.2.0-py3-none-any.whl.metadata (2.0 kB)
+Collecting oauthlib>=3.0.0 (from requests-oauthlib->kubernetes>=24.2.0->latch==2.67.18)
+  Downloading oauthlib-3.3.1-py3-none-any.whl.metadata (7.9 kB)
+Collecting markdown-it-py>=2.2.0 (from rich->cookiecutter>=1.7.3->lytekit==0.15.29->latch==2.67.18)
+  Downloading markdown_it_py-3.0.0-py3-none-any.whl.metadata (6.9 kB)
+Collecting pygments<3.0.0,>=2.13.0 (from rich->cookiecutter>=1.7.3->lytekit==0.15.29->latch==2.67.18)
+  Downloading pygments-2.19.2-py3-none-any.whl.metadata (2.5 kB)
+Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich->cookiecutter>=1.7.3->lytekit==0.15.29->latch==2.67.18)
+  Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Downloading latch-2.67.18-py3-none-any.whl (302 kB)
+Downloading aioconsole-0.6.1-py3-none-any.whl (30 kB)
+Downloading asyncssh-2.13.2-py3-none-any.whl (349 kB)
+Downloading GitPython-3.1.40-py3-none-any.whl (190 kB)
+Downloading gql-3.5.0-py2.py3-none-any.whl (74 kB)
+Downloading graphql_core-3.2.3-py3-none-any.whl (202 kB)
+Downloading lytekit-0.15.29-py3-none-any.whl (355 kB)
+Downloading latch_persistence-0.1.5-py3-none-any.whl (11 kB)
+Downloading lyteidl-0.2.1-py3-none-any.whl (206 kB)
+Downloading lytekitplugins_pods-0.7.4-py3-none-any.whl (8.5 kB)
+Downloading memory_profiler-0.61.0-py3-none-any.whl (31 kB)
+Downloading requests_toolbelt-1.0.0-py2.py3-none-any.whl (54 kB)
+Downloading retry-0.9.2-py2.py3-none-any.whl (8.0 kB)
+Downloading watchfiles-0.19.0-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 27.3 MB/s  0:00:00
+Downloading anyio-4.11.0-py3-none-any.whl (109 kB)
+Downloading backoff-2.2.1-py3-none-any.whl (15 kB)
+Downloading click-8.1.8-py3-none-any.whl (98 kB)
+Downloading croniter-3.0.4-py2.py3-none-any.whl (23 kB)
+Downloading dataclasses_json-0.5.6-py3-none-any.whl (25 kB)
+Downloading deprecated-1.3.1-py2.py3-none-any.whl (11 kB)
+Downloading gitdb-4.0.12-py3-none-any.whl (62 kB)
+Downloading grpcio-1.76.0-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (6.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.6/6.6 MB 47.6 MB/s  0:00:00
+Downloading marshmallow-3.26.1-py3-none-any.whl (50 kB)
+Downloading marshmallow_enum-1.5.1-py2.py3-none-any.whl (4.2 kB)
+Downloading protobuf-3.20.3-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.whl (1.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.0/1.0 MB 37.9 MB/s  0:00:00
+Downloading py-1.11.0-py2.py3-none-any.whl (98 kB)
+Downloading pytimeparse-1.1.8-py2.py3-none-any.whl (10.0 kB)
+Downloading requests-2.32.5-py3-none-any.whl (64 kB)
+Downloading charset_normalizer-3.4.4-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (153 kB)
+Downloading smmap-5.0.2-py3-none-any.whl (24 kB)
+Downloading sortedcontainers-2.4.0-py2.py3-none-any.whl (29 kB)
+Downloading statsd-3.3.0-py2.py3-none-any.whl (11 kB)
+Downloading typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Downloading wrapt-1.17.3-cp39-cp39-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (81 kB)
+Downloading yarl-1.22.0-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (346 kB)
+Downloading apscheduler-3.11.1-py3-none-any.whl (64 kB)
+Downloading boto3-1.40.76-py3-none-any.whl (139 kB)
+Downloading cloudpickle-3.1.2-py3-none-any.whl (22 kB)
+Downloading cookiecutter-2.6.0-py3-none-any.whl (39 kB)
+Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+Downloading binaryornot-0.4.4-py2.py3-none-any.whl (9.0 kB)
+Downloading cryptography-46.0.3-cp38-abi3-manylinux_2_28_x86_64.whl (4.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.5/4.5 MB 51.9 MB/s  0:00:00
+Downloading cffi-2.0.0-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (216 kB)
+Downloading decorator-5.2.1-py3-none-any.whl (9.2 kB)
+Downloading dill-0.4.0-py3-none-any.whl (119 kB)
+Downloading diskcache-5.6.3-py3-none-any.whl (45 kB)
+Downloading docker-7.1.0-py3-none-any.whl (147 kB)
+Downloading urllib3-1.26.20-py2.py3-none-any.whl (144 kB)
+Downloading docker_image_py-0.1.13-py3-none-any.whl (8.9 kB)
+Downloading docstring_parser-0.17.0-py3-none-any.whl (36 kB)
+Downloading exceptiongroup-1.3.0-py3-none-any.whl (16 kB)
+Downloading grpcio_status-1.48.2-py3-none-any.whl (14 kB)
+Downloading googleapis_common_protos-1.72.0-py3-none-any.whl (297 kB)
+Downloading jsonschema-4.25.1-py3-none-any.whl (90 kB)
+Downloading attrs-25.4.0-py3-none-any.whl (67 kB)
+Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+Downloading keyring-25.7.0-py3-none-any.whl (39 kB)
+Downloading importlib_metadata-8.7.0-py3-none-any.whl (27 kB)
+Downloading jeepney-0.9.0-py3-none-any.whl (49 kB)
+Downloading kubernetes-34.1.0-py2.py3-none-any.whl (2.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 43.0 MB/s  0:00:00
+Downloading durationpy-0.10-py3-none-any.whl (3.9 kB)
+Downloading google_auth-2.43.0-py2.py3-none-any.whl (223 kB)
+Downloading cachetools-6.2.2-py3-none-any.whl (11 kB)
+Downloading markupsafe-3.0.3-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (20 kB)
+Downloading marshmallow_jsonschema-0.13.0-py3-none-any.whl (11 kB)
+Downloading multidict-6.7.0-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (239 kB)
+Downloading natsort-8.4.0-py3-none-any.whl (38 kB)
+Downloading orjson-3.11.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (136 kB)
+Downloading packaging-25.0-py3-none-any.whl (66 kB)
+Downloading paramiko-4.0.0-py3-none-any.whl (223 kB)
+Downloading bcrypt-5.0.0-cp39-abi3-manylinux_2_28_x86_64.whl (278 kB)
+Downloading invoke-2.2.1-py3-none-any.whl (160 kB)
+Downloading propcache-0.4.1-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (197 kB)
+Downloading pyasn1_modules-0.4.2-py3-none-any.whl (181 kB)
+Downloading PyJWT-2.10.1-py3-none-any.whl (22 kB)
+Downloading pynacl-1.6.1-cp38-abi3-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (1.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.4/1.4 MB 39.2 MB/s  0:00:00
+Downloading python_json_logger-4.0.0-py3-none-any.whl (15 kB)
+Downloading python_slugify-8.0.4-py2.py3-none-any.whl (10 kB)
+Downloading pytz-2025.2-py2.py3-none-any.whl (509 kB)
+Downloading referencing-0.36.2-py3-none-any.whl (26 kB)
+Downloading regex-2025.11.3-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (791 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 791.2/791.2 kB 27.9 MB/s  0:00:00
+Downloading responses-0.25.8-py3-none-any.whl (34 kB)
+Downloading rpds_py-0.27.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (384 kB)
+Downloading scp-0.15.0-py2.py3-none-any.whl (8.8 kB)
+Downloading SecretStorage-3.3.3-py3-none-any.whl (15 kB)
+Using cached setuptools-80.9.0-py3-none-any.whl (1.2 MB)
+Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
+Downloading text_unidecode-1.3-py2.py3-none-any.whl (78 kB)
+Downloading tqdm-4.67.1-py3-none-any.whl (78 kB)
+Downloading typing_inspect-0.9.0-py3-none-any.whl (8.8 kB)
+Downloading mypy_extensions-1.1.0-py3-none-any.whl (5.0 kB)
+Downloading tzlocal-5.3.1-py3-none-any.whl (18 kB)
+Downloading websocket_client-1.9.0-py3-none-any.whl (82 kB)
+Downloading websockets-15.0.1-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (181 kB)
+Downloading zipp-3.23.0-py3-none-any.whl (10 kB)
+Downloading arrow-1.4.0-py3-none-any.whl (68 kB)
+Downloading jaraco.classes-3.4.0-py3-none-any.whl (6.8 kB)
+Downloading jaraco.context-6.0.1-py3-none-any.whl (6.8 kB)
+Downloading backports.tarfile-1.2.0-py3-none-any.whl (30 kB)
+Downloading jaraco_functools-4.3.0-py3-none-any.whl (10 kB)
+Downloading more_itertools-10.8.0-py3-none-any.whl (69 kB)
+Downloading protoc_gen_swagger-0.1.0-py2.py3-none-any.whl (9.4 kB)
+Downloading psutil-7.1.3-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl (263 kB)
+Downloading pycparser-2.23-py3-none-any.whl (118 kB)
+Downloading requests_oauthlib-2.0.0-py2.py3-none-any.whl (24 kB)
+Downloading oauthlib-3.3.1-py3-none-any.whl (160 kB)
+Downloading rich-14.2.0-py3-none-any.whl (243 kB)
+Downloading pygments-2.19.2-py3-none-any.whl (1.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 6.1 MB/s  0:00:00
+Downloading markdown_it_py-3.0.0-py3-none-any.whl (87 kB)
+Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Downloading tzdata-2025.2-py2.py3-none-any.whl (347 kB)
+Building wheels for collected packages: pyxattr
+  Building wheel for pyxattr (pyproject.toml): started
+  Building wheel for pyxattr (pyproject.toml): finished with status 'error'
+[91m  error: subprocess-exited-with-error
+  
+  × Building wheel for pyxattr (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> [24 lines of output]
+      /tmp/pip-build-env-wesafjg9/overlay/lib/python3.9/site-packages/setuptools/dist.py:759: SetuptoolsDeprecationWarning: License classifiers are deprecated.
+      !!
+      
+              ********************************************************************************
+              Please consider removing the following classifiers in favor of a SPDX license expression:
+      
+              License :: OSI Approved :: GNU Lesser General Public License v2 or later (LGPLv2+)
+      
+              See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+              ********************************************************************************
+      
+      !!
+        self._finalize_license_expression()
+      running bdist_wheel
+      running build
+      running build_ext
+      building 'xattr' extension
+      creating build/temp.linux-x86_64-cpython-39
+      x86_64-linux-gnu-gcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -fPIC -D_XATTR_VERSION=\"0.8.1\" "-D_XATTR_AUTHOR=\"Iustin Pop\"" -D_XATTR_EMAIL=\"iustin@k1024.org\" -I/usr/include/python3.9 -c xattr.c -o build/temp.linux-x86_64-cpython-39/xattr.o -Wall -Werror -Wsign-compare
+      xattr.c:25:10: fatal error: Python.h: No such file or directory
+         25 | #include <Python.h>
+            |          ^~~~~~~~~~
+      compilation terminated.
+      error: command '/usr/bin/x86_64-linux-gnu-gcc' failed with exit code 1
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+[0m[91m  ERROR: Failed building wheel for pyxattr
+[0mFailed to build pyxattr
+[91merror: failed-wheel-build-for-install
+
+× Failed to build installable wheels for some pyproject.toml based projects
+╰─> pyxattr
+[0mThe command '/usr/bin/env bash -o errexit -o pipefail -o nounset -o verbose -o errtrace -O inherit_errexit -O shift_verbose -c pip install latch==2.67.18' returned a non-zero code: 1

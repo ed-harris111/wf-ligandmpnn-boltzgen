@@ -1,0 +1,351 @@
+Step 1/38 : FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu20.04
+ ---> a1ffe80dc4e1
+Step 2/38 : COPY --from=812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base-cuda:fe0b-main /bin/flytectl /bin/flytectl
+ ---> Using cache
+ ---> 1efd5fd57e3f
+Step 3/38 : WORKDIR /root
+ ---> Using cache
+ ---> be988766149a
+Step 4/38 : ENV VENV /opt/venv
+ ---> Using cache
+ ---> 0bc8763049c1
+Step 5/38 : ENV LANG C.UTF-8
+ ---> Using cache
+ ---> b0fe75b2d533
+Step 6/38 : ENV LC_ALL C.UTF-8
+ ---> Using cache
+ ---> 2acc0400eac3
+Step 7/38 : ENV PYTHONPATH /root
+ ---> Using cache
+ ---> 3c0ee4bb8a3e
+Step 8/38 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 5c4762b10eab
+Step 9/38 : RUN apt-get update && apt-get install -y libsm6 libxext6 libxrender-dev build-essential procps rsync openssh-server
+ ---> Using cache
+ ---> 99eee343dcf8
+Step 10/38 : RUN apt-get install -y software-properties-common &&    add-apt-repository -y ppa:deadsnakes/ppa &&    apt-get install -y python3.9 python3-pip python3.9-distutils curl
+ ---> Using cache
+ ---> 760a009e16b3
+Step 11/38 : RUN python3.9 -m pip install --upgrade pip && python3.9 -m pip install awscli
+ ---> Using cache
+ ---> b114d4bbed69
+Step 12/38 : RUN curl -L https://github.com/peak/s5cmd/releases/download/v2.0.0/s5cmd_2.0.0_Linux-64bit.tar.gz -o s5cmd_2.0.0_Linux-64bit.tar.gz &&    tar -xzvf s5cmd_2.0.0_Linux-64bit.tar.gz &&    mv s5cmd /bin/ &&    rm CHANGELOG.md LICENSE README.md
+ ---> Using cache
+ ---> 595a0c7338a6
+Step 13/38 : COPY --from=812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base-cuda:fe0b-main /root/Makefile /root/Makefile
+ ---> Using cache
+ ---> 3bd19fbbdb99
+Step 14/38 : COPY --from=812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base-cuda:fe0b-main /root/flytekit.config /root/flytekit.config
+ ---> Using cache
+ ---> 5a6acc5f1b24
+Step 15/38 : WORKDIR /tmp/docker-build/work/
+ ---> Using cache
+ ---> 0c79d84b02c3
+Step 16/38 : SHELL [     "/usr/bin/env", "bash",     "-o", "errexit",     "-o", "pipefail",     "-o", "nounset",     "-o", "verbose",     "-o", "errtrace",     "-O", "inherit_errexit",     "-O", "shift_verbose",     "-c" ]
+ ---> Using cache
+ ---> b9bf56dda1e3
+Step 17/38 : ENV TZ='Etc/UTC'
+ ---> Using cache
+ ---> 8fd9ab83b086
+Step 18/38 : ENV LANG='en_US.UTF-8'
+ ---> Using cache
+ ---> 1e2e0b8c2207
+Step 19/38 : ARG DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 3765316fefb4
+Step 20/38 : RUN apt-get update --yes &&     xargs apt-get install --yes aria2 git wget unzip curl fuse &&     apt-get install --fix-broken
+ ---> Using cache
+ ---> 78f72b4531b3
+Step 21/38 : RUN curl --location --fail --remote-name https://objectivefs.com/user/download/an7dzrz65/objectivefs_7.2_amd64.deb &&     dpkg -i objectivefs_7.2_amd64.deb &&     mkdir /etc/objectivefs.env
+ ---> Using cache
+ ---> 9931c2a57843
+Step 22/38 : RUN apt-get install --yes pkg-config libfuse-dev
+ ---> Using cache
+ ---> 15d669022767
+Step 23/38 : ENV CACHESIZE="50Gi"
+ ---> Using cache
+ ---> f332888e0ee1
+Step 24/38 : ENV DISKCACHE_SIZE="200Gi"
+ ---> Using cache
+ ---> de4fdc139968
+Step 25/38 : RUN apt-get update && apt-get install -y libattr1-dev python3.9-dev &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 9b7acaececa1
+Step 26/38 : RUN python3.9 -m pip install latch==2.67.12
+ ---> Using cache
+ ---> 0cda24dd95c8
+Step 27/38 : RUN mkdir /opt/latch
+ ---> Using cache
+ ---> 86aab910cf32
+Step 28/38 : RUN apt-get update --yes &&     apt-get install --yes curl ca-certificates &&     curl         --location         --fail         --retry 3         --retry-delay 5         --remote-name         https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh &&     `# Docs for -b and -p flags: https://docs.anaconda.com/anaconda/install/silent-mode/#linux-macos`     bash Miniforge3-Linux-x86_64.sh -b -p /opt/conda -u &&     rm Miniforge3-Linux-x86_64.sh
+ ---> Using cache
+ ---> b51d68c8225d
+Step 29/38 : ENV PATH=/opt/conda/bin:$PATH
+ ---> Using cache
+ ---> a83531f85856
+Step 30/38 : RUN git clone https://github.com/HannesStark/boltzgen &&     cd boltzgen
+ ---> Running in 024b8585f350
+[91mgit clone https://github.com/HannesStark/boltzgen &&     cd boltzgen
+[0m[91mCloning into 'boltzgen'...
+[0m ---> a0377cdf64ac
+Step 31/38 : RUN conda create -n boltzgen_env python=3.11
+ ---> Running in 774f84eedab0
+[91mconda create -n boltzgen_env python=3.11
+[0mRetrieving notices: - \ done
+Channels:
+ - conda-forge
+Platform: linux-64
+Collecting package metadata (repodata.json): / - \ | / - \ | / - \ | / - \ | / - \ | / done
+Solving environment: \ | done
+
+## Package Plan ##
+
+  environment location: /opt/conda/envs/boltzgen_env
+
+  added / updated specs:
+    - python=3.11
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    ca-certificates-2025.11.12 |       hbd8a1cb_0         149 KB  conda-forge
+    icu-75.1                   |       he02047a_0        11.6 MB  conda-forge
+    ld_impl_linux-64-2.45      |       h1aa0949_0         736 KB  conda-forge
+    libsqlite-3.51.0           |       hee844dc_0         923 KB  conda-forge
+    openssl-3.6.0              |       h26f9b46_0         3.0 MB  conda-forge
+    pip-25.3                   |     pyh8b19718_0         1.1 MB  conda-forge
+    python-3.11.14             |hd63d673_2_cpython        29.4 MB  conda-forge
+    tk-8.6.13                  |noxft_ha0e22de_103         3.1 MB  conda-forge
+    ------------------------------------------------------------
+                                           Total:        50.1 MB
+
+The following NEW packages will be INSTALLED:
+
+  _libgcc_mutex      conda-forge/linux-64::_libgcc_mutex-0.1-conda_forge 
+  _openmp_mutex      conda-forge/linux-64::_openmp_mutex-4.5-2_gnu 
+  bzip2              conda-forge/linux-64::bzip2-1.0.8-hda65f42_8 
+  ca-certificates    conda-forge/noarch::ca-certificates-2025.11.12-hbd8a1cb_0 
+  icu                conda-forge/linux-64::icu-75.1-he02047a_0 
+  ld_impl_linux-64   conda-forge/linux-64::ld_impl_linux-64-2.45-h1aa0949_0 
+  libexpat           conda-forge/linux-64::libexpat-2.7.1-hecca717_0 
+  libffi             conda-forge/linux-64::libffi-3.5.2-h9ec8514_0 
+  libgcc             conda-forge/linux-64::libgcc-15.2.0-h767d61c_7 
+  libgcc-ng          conda-forge/linux-64::libgcc-ng-15.2.0-h69a702a_7 
+  libgomp            conda-forge/linux-64::libgomp-15.2.0-h767d61c_7 
+  liblzma            conda-forge/linux-64::liblzma-5.8.1-hb9d3cd8_2 
+  libnsl             conda-forge/linux-64::libnsl-2.0.1-hb9d3cd8_1 
+  libsqlite          conda-forge/linux-64::libsqlite-3.51.0-hee844dc_0 
+  libstdcxx          conda-forge/linux-64::libstdcxx-15.2.0-h8f9b012_7 
+  libstdcxx-ng       conda-forge/linux-64::libstdcxx-ng-15.2.0-h4852527_7 
+  libuuid            conda-forge/linux-64::libuuid-2.41.2-he9a06e4_0 
+  libxcrypt          conda-forge/linux-64::libxcrypt-4.4.36-hd590300_1 
+  libzlib            conda-forge/linux-64::libzlib-1.3.1-hb9d3cd8_2 
+  ncurses            conda-forge/linux-64::ncurses-6.5-h2d0b736_3 
+  openssl            conda-forge/linux-64::openssl-3.6.0-h26f9b46_0 
+  pip                conda-forge/noarch::pip-25.3-pyh8b19718_0 
+  python             conda-forge/linux-64::python-3.11.14-hd63d673_2_cpython 
+  readline           conda-forge/linux-64::readline-8.2-h8c095d6_2 
+  setuptools         conda-forge/noarch::setuptools-80.9.0-pyhff2d567_0 
+  tk                 conda-forge/linux-64::tk-8.6.13-noxft_ha0e22de_103 
+  tzdata             conda-forge/noarch::tzdata-2025b-h78e105d_0 
+  wheel              conda-forge/noarch::wheel-0.45.1-pyhd8ed1ab_1 
+  zstd               conda-forge/linux-64::zstd-1.5.7-hb8e6e7a_2 
+
+
+Proceed ([y]/n)? 
+
+Downloading and Extracting Packages: ...working...python-3.11.14       | 29.4 MB   |            |   0% 
+icu-75.1             | 11.6 MB   |            |   0% [A
+
+tk-8.6.13            | 3.1 MB    |            |   0% [A[A
+
+
+openssl-3.6.0        | 3.0 MB    |            |   0% [A[A[A
+
+
+
+pip-25.3             | 1.1 MB    |            |   0% [A[A[A[A
+
+
+
+
+libsqlite-3.51.0     | 923 KB    |            |   0% [A[A[A[A[A
+
+
+
+
+
+ld_impl_linux-64-2.4 | 736 KB    |            |   0% [A[A[A[A[A[A
+
+
+
+
+
+
+ca-certificates-2025 | 149 KB    |            |   0% [A[A[A[A[A[A[A
+icu-75.1             | 11.6 MB   | 8          |   9% [Apython-3.11.14       | 29.4 MB   | 1          |   1% 
+
+tk-8.6.13            | 3.1 MB    | #1         |  12% [A[A
+
+
+
+pip-25.3             | 1.1 MB    | ##2        |  22% [A[A[A[A
+
+
+openssl-3.6.0        | 3.0 MB    | 8          |   8% [A[A[A
+
+
+
+pip-25.3             | 1.1 MB    | ########## | 100% [A[A[A[A
+icu-75.1             | 11.6 MB   | ##6        |  26% [Apython-3.11.14       | 29.4 MB   | 8          |   9% 
+
+tk-8.6.13            | 3.1 MB    | ########3  |  84% [A[A
+
+
+openssl-3.6.0        | 3.0 MB    | ######7    |  67% [A[A[A
+
+
+
+
+libsqlite-3.51.0     | 923 KB    | 1          |   2% [A[A[A[A[A
+
+
+
+
+libsqlite-3.51.0     | 923 KB    | ########## | 100% [A[A[A[A[A
+icu-75.1             | 11.6 MB   | ####9      |  50% [Apython-3.11.14       | 29.4 MB   | #8         |  19% 
+
+tk-8.6.13            | 3.1 MB    | ########## | 100% [A[A
+
+
+
+
+
+ld_impl_linux-64-2.4 | 736 KB    | 2          |   2% [A[A[A[A[A[A
+
+
+openssl-3.6.0        | 3.0 MB    | ########## | 100% [A[A[A
+
+
+
+
+
+
+ca-certificates-2025 | 149 KB    | #          |  11% [A[A[A[A[A[A[A
+
+
+
+
+
+
+ca-certificates-2025 | 149 KB    | ########## | 100% [A[A[A[A[A[A[A
+icu-75.1             | 11.6 MB   | ######8    |  69% [Apython-3.11.14       | 29.4 MB   | ##6        |  26% 
+
+
+
+
+
+ld_impl_linux-64-2.4 | 736 KB    | ########## | 100% [A[A[A[A[A[A
+
+
+
+
+libsqlite-3.51.0     | 923 KB    | ########## | 100% [A[A[A[A[A
+
+
+
+
+libsqlite-3.51.0     | 923 KB    | ########## | 100% [A[A[A[A[A
+icu-75.1             | 11.6 MB   | ########9  |  90% [Apython-3.11.14       | 29.4 MB   | ###4       |  35% python-3.11.14       | 29.4 MB   | ####4      |  44% python-3.11.14       | 29.4 MB   | #####3     |  53% python-3.11.14       | 29.4 MB   | ######2    |  62% python-3.11.14       | 29.4 MB   | #######2   |  72% 
+icu-75.1             | 11.6 MB   | ########## | 100% [Apython-3.11.14       | 29.4 MB   | ########4  |  85% python-3.11.14       | 29.4 MB   | #########7 |  97% 
+
+
+openssl-3.6.0        | 3.0 MB    | ########## | 100% [A[A[A
+
+
+
+
+
+
+ca-certificates-2025 | 149 KB    | ########## | 100% [A[A[A[A[A[A[A
+
+
+
+
+
+
+ca-certificates-2025 | 149 KB    | ########## | 100% [A[A[A[A[A[A[A
+
+
+
+
+
+ld_impl_linux-64-2.4 | 736 KB    | ########## | 100% [A[A[A[A[A[A
+
+
+
+
+
+ld_impl_linux-64-2.4 | 736 KB    | ########## | 100% [A[A[A[A[A[A
+
+
+
+pip-25.3             | 1.1 MB    | ########## | 100% [A[A[A[A
+
+
+
+pip-25.3             | 1.1 MB    | ########## | 100% [A[A[A[A
+
+tk-8.6.13            | 3.1 MB    | ########## | 100% [A[Apython-3.11.14       | 29.4 MB   | ########## | 100% 
+icu-75.1             | 11.6 MB   | ########## | 100% [Apython-3.11.14       | 29.4 MB   | ########## | 100%                                                      
+                                                     [A
+
+                                                     [A[A
+
+
+                                                     [A[A[A
+
+
+
+                                                     [A[A[A[A
+
+
+
+
+                                                     [A[A[A[A[A
+
+
+
+
+
+                                                     [A[A[A[A[A[A
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A done
+Preparing transaction: - \ | / done
+Verifying transaction: \ | / - \ | / - \ | / - \ | / - \ | done
+Executing transaction: - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - done
+#
+# To activate this environment, use
+#
+#     $ conda activate boltzgen_env
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+ ---> ca31ee0b827a
+Step 32/38 : RUN cd boltzgen &&     conda run -n boltzgen_env pip3 install -r requirements.txt
+ ---> Running in 5cee087db3d5
+[91mcd boltzgen &&     conda run -n boltzgen_env pip3 install -r requirements.txt
+[0m[91mERROR: Could not open requirements file: [Errno 2] No such file or directory: 'requirements.txt'
+
+ERROR conda.cli.main_run:execute(127): `conda run pip3 install -r requirements.txt` failed. (See above for error)
+[0mThe command '/usr/bin/env bash -o errexit -o pipefail -o nounset -o verbose -o errtrace -O inherit_errexit -O shift_verbose -c cd boltzgen &&     conda run -n boltzgen_env pip3 install -r requirements.txt' returned a non-zero code: 1

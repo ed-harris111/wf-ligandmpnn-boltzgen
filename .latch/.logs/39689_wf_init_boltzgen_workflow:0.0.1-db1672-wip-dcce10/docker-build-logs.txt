@@ -1,0 +1,30 @@
+Step 1/15 : from 812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base:cb01-main
+ ---> 507607c2b5ea
+Step 2/15 : workdir /tmp/docker-build/work/
+ ---> Using cache
+ ---> 3b5eb2da1ce3
+Step 3/15 : shell [     "/usr/bin/env", "bash",     "-o", "errexit",     "-o", "pipefail",     "-o", "nounset",     "-o", "verbose",     "-o", "errtrace",     "-O", "inherit_errexit",     "-O", "shift_verbose",     "-c" ]
+ ---> Using cache
+ ---> 2af6bafaff25
+Step 4/15 : env TZ='Etc/UTC'
+ ---> Using cache
+ ---> 5b7579be9ce0
+Step 5/15 : env LANG='en_US.UTF-8'
+ ---> Using cache
+ ---> 5740eabe5ff3
+Step 6/15 : arg DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 6aedbe938026
+Step 7/15 : run pip install latch==2.67.18
+ ---> Using cache
+ ---> edd16ea7e57e
+Step 8/15 : run mkdir /opt/latch
+ ---> Using cache
+ ---> 592d4338d14b
+Step 9/15 : copy . /root/
+ ---> 0400495c7789
+Step 10/15 : run git clone https://github.com/HannesStark/boltzgen
+ ---> Running in 4d9a83bb7693
+[91mgit clone https://github.com/HannesStark/boltzgen
+[0m[91mbash: line 1: git: command not found
+[0mThe command '/usr/bin/env bash -o errexit -o pipefail -o nounset -o verbose -o errtrace -O inherit_errexit -O shift_verbose -c git clone https://github.com/HannesStark/boltzgen' returned a non-zero code: 127

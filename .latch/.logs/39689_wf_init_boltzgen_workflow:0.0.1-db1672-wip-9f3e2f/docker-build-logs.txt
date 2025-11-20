@@ -1,0 +1,48 @@
+Step 1/15 : from 812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base:cb01-main
+ ---> 507607c2b5ea
+Step 2/15 : workdir /tmp/docker-build/work/
+ ---> Using cache
+ ---> 3b5eb2da1ce3
+Step 3/15 : shell [     "/usr/bin/env", "bash",     "-o", "errexit",     "-o", "pipefail",     "-o", "nounset",     "-o", "verbose",     "-o", "errtrace",     "-O", "inherit_errexit",     "-O", "shift_verbose",     "-c" ]
+ ---> Using cache
+ ---> 2af6bafaff25
+Step 4/15 : env TZ='Etc/UTC'
+ ---> Using cache
+ ---> 5b7579be9ce0
+Step 5/15 : env LANG='en_US.UTF-8'
+ ---> Using cache
+ ---> 5740eabe5ff3
+Step 6/15 : arg DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 6aedbe938026
+Step 7/15 : RUN apt-get update --yes &&     xargs apt-get install --yes aria2 git wget unzip curl fuse &&     apt-get install --fix-broken
+ ---> Using cache
+ ---> dc6f4a3a7b2d
+Step 8/15 : run pip install latch==2.67.18
+ ---> Using cache
+ ---> e16e7fe88093
+Step 9/15 : run mkdir /opt/latch
+ ---> Using cache
+ ---> eaa7aa939726
+Step 10/15 : copy . /root/
+ ---> bfc4f4a8207a
+Step 11/15 : run git clone https://github.com/HannesStark/boltzgen
+ ---> Running in a420d4cb0f11
+[91mgit clone https://github.com/HannesStark/boltzgen
+[0m[91mCloning into 'boltzgen'...
+[0m ---> 38175664426e
+Step 12/15 : run cd boltzgen
+ ---> Running in 7d180470efaf
+[91mcd boltzgen
+[0m ---> 426ac41ef382
+Step 13/15 : arg tag
+ ---> Running in d585b926ed93
+ ---> 61de0cd774b2
+Step 14/15 : env FLYTE_INTERNAL_IMAGE $tag
+ ---> Running in e478f6191646
+ ---> 35d3b083693a
+Step 15/15 : workdir /root
+ ---> Running in d70cb333cd0d
+ ---> 0bb5dc4b9437
+Successfully built 0bb5dc4b9437
+Successfully tagged 812206152185.dkr.ecr.us-west-2.amazonaws.com/39689_wf_init_boltzgen_workflow:0.0.1-db1672-wip-9f3e2f

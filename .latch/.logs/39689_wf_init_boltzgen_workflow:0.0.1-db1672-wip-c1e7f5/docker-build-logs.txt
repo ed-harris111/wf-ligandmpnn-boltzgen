@@ -1,0 +1,30 @@
+Step 1/17 : from 812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base:cb01-main
+ ---> 507607c2b5ea
+Step 2/17 : workdir /tmp/docker-build/work/
+ ---> Using cache
+ ---> 3b5eb2da1ce3
+Step 3/17 : shell [     "/usr/bin/env", "bash",     "-o", "errexit",     "-o", "pipefail",     "-o", "nounset",     "-o", "verbose",     "-o", "errtrace",     "-O", "inherit_errexit",     "-O", "shift_verbose",     "-c" ]
+ ---> Using cache
+ ---> 2af6bafaff25
+Step 4/17 : env TZ='Etc/UTC'
+ ---> Using cache
+ ---> 5b7579be9ce0
+Step 5/17 : env LANG='en_US.UTF-8'
+ ---> Using cache
+ ---> 5740eabe5ff3
+Step 6/17 : arg DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 6aedbe938026
+Step 7/17 : run pip install latch==2.67.18
+ ---> Using cache
+ ---> edd16ea7e57e
+Step 8/17 : run mkdir /opt/latch
+ ---> Using cache
+ ---> 592d4338d14b
+Step 9/17 : copy . /root/
+ ---> 4c4f4127e2a1
+Step 10/17 : RUN python3.9 -m pip install --upgrade pip && python3.9 -m pip install awscli
+ ---> Running in 6293a945367f
+[91mpython3.9 -m pip install --upgrade pip && python3.9 -m pip install awscli
+[0m[91mbash: line 1: python3.9: command not found
+[0mThe command '/usr/bin/env bash -o errexit -o pipefail -o nounset -o verbose -o errtrace -O inherit_errexit -O shift_verbose -c python3.9 -m pip install --upgrade pip && python3.9 -m pip install awscli' returned a non-zero code: 127
