@@ -39,6 +39,7 @@ RUN /root/miniconda/bin/conda create --name mlfold python=3.12 -y && \
     /root/miniconda/bin/conda run --name mlfold conda install pytorch-cuda=12.1 -c pytorch -c nvidia -y
 
 
+
 #fixing no python issue 
 env PATH /root/miniconda/envs/mlfold/bin:$PATH
 
