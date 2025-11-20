@@ -4,6 +4,7 @@ from latch.resources.launch_plan import LaunchPlan
 from latch.resources.workflow import workflow
 from latch.types.directory import LatchOutputDir
 from latch.types.file import LatchFile
+from latch.types.directory import LatchDir
 from latch.types.metadata import (
     LatchAuthor,
     LatchMetadata,
@@ -20,7 +21,7 @@ flow = [
     Section(
         "Input",
         Params(
-            "input_yaml",
+            "input_yaml_dir",
         ),
         Text("The input PDB file can contain:"),
         Text(
@@ -48,7 +49,7 @@ flow = [
 ]
 
 metadata = LatchMetadata(
-    display_name="BoltzGen",
+    display_name="BoltzGen-1",
     author=LatchAuthor(
         name="TEMP AUTHOR",
     ),
@@ -61,8 +62,8 @@ metadata = LatchMetadata(
             description="Name of run",
             batch_table_column=True,
         ),
-        "input_yaml": LatchParameter(
-            display_name="Input yaml",
+        "input_yaml_dir": LatchParameter(
+            display_name="Input yaml dir",
             description="Input yaml file",
             batch_table_column=True,
         ),
@@ -79,13 +80,13 @@ metadata = LatchMetadata(
 @workflow(metadata)
 def boltzgen_workflow(
     run_name: str,
-    input_yaml: LatchFile,
+    input_yaml_dir: LatchDir = LatchDir("latch://39689.account/example_Files/vanilla_protein/example_Files/vanilla_protein"),
     output_directory: LatchOutputDir = LatchOutputDir("latch:///LigandMPNN"),
 ) -> LatchOutputDir:
    
     return boltzgen_task(
         run_name=run_name,
-        input_yaml=input_yaml,
+        input_yaml_dir=input_yaml_dir,
         output_directory=output_directory,
     )
 

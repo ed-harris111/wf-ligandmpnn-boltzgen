@@ -1,0 +1,90 @@
+Step 1/30 : FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu20.04
+ ---> a1ffe80dc4e1
+Step 2/30 : COPY --from=812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base-cuda:cb01-main /bin/flytectl /bin/flytectl
+ ---> Using cache
+ ---> 1efd5fd57e3f
+Step 3/30 : WORKDIR /root
+ ---> Using cache
+ ---> be988766149a
+Step 4/30 : ENV VENV /opt/venv
+ ---> Using cache
+ ---> 0bc8763049c1
+Step 5/30 : ENV LANG C.UTF-8
+ ---> Using cache
+ ---> b0fe75b2d533
+Step 6/30 : ENV LC_ALL C.UTF-8
+ ---> Using cache
+ ---> 2acc0400eac3
+Step 7/30 : ENV PYTHONPATH /root
+ ---> Using cache
+ ---> 3c0ee4bb8a3e
+Step 8/30 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 5c4762b10eab
+Step 9/30 : RUN apt-get update && apt-get install -y libsm6 libxext6 libxrender-dev build-essential procps rsync openssh-server
+ ---> Using cache
+ ---> 99eee343dcf8
+Step 10/30 : COPY --from=812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base-cuda:fe0b-main /root/Makefile /root/Makefile
+ ---> Using cache
+ ---> a55bb298a8ff
+Step 11/30 : COPY --from=812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base-cuda:fe0b-main /root/flytekit.config /root/flytekit.config
+ ---> Using cache
+ ---> 313bb110385e
+Step 12/30 : RUN apt-get install -y software-properties-common &&    add-apt-repository -y ppa:deadsnakes/ppa &&    apt-get install -y python3.9 python3-pip python3.9-distutils curl
+ ---> Using cache
+ ---> 9010ecd3b255
+Step 13/30 : RUN python3.9 -m pip install --upgrade pip && python3.9 -m pip install awscli
+ ---> Using cache
+ ---> 3b99b8dd9d96
+Step 14/30 : RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh &&     bash miniconda.sh -b -p /root/miniconda &&     rm miniconda.sh
+ ---> Using cache
+ ---> 0c72434a8274
+Step 15/30 : RUN /root/miniconda/bin/conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main &&     /root/miniconda/bin/conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
+ ---> Using cache
+ ---> efbdcc03b164
+Step 16/30 : RUN /root/miniconda/bin/conda create --name mlfold python=3.11 -y &&     /root/miniconda/bin/conda run --name mlfold conda install pytorch torchvision torchaudio pytorch-lightning pytorch-cuda=12.1 -c pytorch -c nvidia -y
+ ---> Using cache
+ ---> 925ed27936ef
+Step 17/30 : COPY requirements.txt /opt/latch/requirements.txt
+ ---> Using cache
+ ---> c9f9e0182ec8
+Step 18/30 : RUN /root/miniconda/bin/conda run --name mlfold pip install --requirement /opt/latch/requirements.txt
+ ---> Using cache
+ ---> 22e10281ebe6
+Step 19/30 : RUN /root/miniconda/bin/conda run --name mlfold pip install --no-cache-dir     --index-url https://download.pytorch.org/whl/cu121     torch==2.4.1
+ ---> Using cache
+ ---> 461e7828c60b
+Step 20/30 : env TZ='Etc/UTC'
+ ---> Using cache
+ ---> b24b579f1350
+Step 21/30 : env LANG='en_US.UTF-8'
+ ---> Using cache
+ ---> b5e6044c53ad
+Step 22/30 : arg DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 2f4c708bd4a7
+Step 23/30 : RUN apt-get update && apt-get install -y     python3.9 python3.9-dev python3-pip python3.9-distutils curl     build-essential libattr1-dev attr
+ ---> Using cache
+ ---> 78bcd941847e
+Step 24/30 : RUN pip install --no-cache-dir --upgrade latch
+ ---> Using cache
+ ---> bafe15bcead8
+Step 25/30 : RUN pip install 'urllib3>=1.26.0,<2.0.0' --force-reinstall
+ ---> Using cache
+ ---> a6eec4532433
+Step 26/30 : RUN ls /root/miniconda/bin/conda
+ ---> Using cache
+ ---> 92e21ea20bf6
+Step 27/30 : copy . /root/
+ ---> 24f562981415
+Step 28/30 : ARG tag
+ ---> Running in ddff10a3589a
+ ---> 353f0075f0f2
+Step 29/30 : ENV FLYTE_INTERNAL_IMAGE $tag
+ ---> Running in 6061d3dfd20b
+ ---> 9a8d5a392eca
+Step 30/30 : WORKDIR /root
+ ---> Running in f421ca293682
+ ---> 36e8aa30569a
+Successfully built 36e8aa30569a
+Successfully tagged 812206152185.dkr.ecr.us-west-2.amazonaws.com/39689_wf_init_boltzgen_workflow:0.0.1-e02402-wip-a4e15d

@@ -8,6 +8,7 @@ from latch.functions.messages import message
 from latch.resources.tasks import small_gpu_task
 from latch.types.directory import LatchOutputDir
 from latch.types.file import LatchFile
+from latch.types.directory import LatchDir
 
 sys.stdout.reconfigure(line_buffering=True)
 
@@ -16,7 +17,7 @@ sys.stdout.reconfigure(line_buffering=True)
 @small_gpu_task(cache=True)
 def boltzgen_task(
     run_name: str,
-    input_yaml: LatchFile,
+    input_yaml_dir: LatchDir,
     output_directory: LatchOutputDir = LatchOutputDir("latch:///BoltzGen"),
 ) -> LatchOutputDir:
     rename_current_execution(str(run_name))
@@ -34,24 +35,38 @@ def boltzgen_task(
     print("Running BoltzGen")
 
     command = [
-        "/root/miniconda/bin/conda", "run", "--name", "mlfold",
-        "boltzgen", "run",
-        str(input_yaml.local_path),
-        "--output", str(local_output_dir),
+        "/root/miniconda/envs/mlfold/bin/boltzgen", "run",
+        str(Path(input_yaml_dir) / "1g13prot.yaml"),
+        "--output",
+        str(local_output_dir), 
         "--steps", "design",
         "--num_designs", "2",
-    ]
+        ]
+
   
     print(f"Running command: {' '.join(command)}")
 
     try:
-        subprocess.run(command, check=True, cwd="/root/miniconda/bin/conda")
-        print("Done")
-    except Exception as e:
+        result = subprocess.run(
+            command,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        print(result.stdout)
+    except subprocess.CalledProcessError as e:
         print("FAILED")
-        message("error", {"title": "LigandMPNN failed", "body": f"{e}"})
+        print(e.stdout)
+        print(e.stderr)
+        message(
+            "error",
+            {
+                "title": "BoltzGen failed",
+                "body": f"Return code {e.returncode}\n{e.stderr}",
+            },
+        )
         sys.exit(1)
-
     print("-" * 60)
     print("Returning results")
+
     return LatchOutputDir(str("/root/outputs"), output_directory.remote_path)

@@ -4,8 +4,6 @@ FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu20.04
 COPY --from=812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base-cuda:cb01-main /bin/flytectl /bin/flytectl
 WORKDIR /root
 
-#FIX INSTALLING AWS CLI
-
 
 ENV VENV /opt/venv
 ENV LANG C.UTF-8
@@ -35,10 +33,14 @@ RUN /root/miniconda/bin/conda tos accept --override-channels --channel https://r
     /root/miniconda/bin/conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
 
 # Install ProteinMPNN environment with conda 
-RUN /root/miniconda/bin/conda create --name mlfold python=3.11 -y && \
-    /root/miniconda/bin/conda run --name mlfold conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia -y
-COPY requirements.txt /opt/latch/requirements.txt
-RUN /root/miniconda/bin/conda run --name mlfold pip install --requirement /opt/latch/requirements.txt
+COPY requirements.txt /opt/latch/requirements.txt    
+RUN /root/miniconda/bin/conda create --name mlfold python=3.12 -y && \
+    /root/miniconda/bin/conda run --name mlfold pip install --requirement /opt/latch/requirements.txt && \
+    /root/miniconda/bin/conda run --name mlfold conda install pytorch-cuda=12.1 -c pytorch -c nvidia -y
+
+
+#fixing no python issue 
+env PATH /root/miniconda/envs/mlfold/bin:$PATH
 
 env TZ='Etc/UTC'
 env LANG='en_US.UTF-8'
@@ -50,8 +52,10 @@ arg DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
     python3.9 python3.9-dev python3-pip python3.9-distutils curl \
     build-essential libattr1-dev attr
-RUN pip install --no-cache-dir --upgrade pip latch
+RUN pip install --no-cache-dir --upgrade latch
 RUN pip install 'urllib3>=1.26.0,<2.0.0' --force-reinstall
+RUN ls /root/miniconda/bin/conda
+
 
 
 
